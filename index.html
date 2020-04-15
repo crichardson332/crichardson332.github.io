@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
-  <meta name="author" content="Matthieu R Bloch">
+  <meta name="author" content="Chris Richardson">
   <title>Why supervised learning may work</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -33,37 +33,21 @@
     <div class="slides">
 
 <section id="title-N">
-  <h1 class="title">Why supervised learning may work</h1>
-  <p class="author">Matthieu R Bloch</p>
-  <p class="date">Thursday, January 16, 2020</p>
+  <h1 class="title">A Proof of the Straight Line Theorem</h1>
+  <p class="author">Chris Richardson</p>
+  <p class="date">April 15, 2020</p>
 </section>
 
-<section id="logistics" class="slide level2">
-<h2>Logistics</h2>
+<section id="problem-statement" class="slide level2">
+<h2>PROBLEM STATEMENT</h2>
 <div>
 <ul>
-<li>TAs and Office hours
-<ul>
-<li>Monday: Mehrdad (TSRB 523a) - 2pm-3:15pm</li>
-<li>Tuesday: TJ (VL C449 Cubicle D) - 1:30pm - 2:45pm</li>
-<li>Wednesday: Matthieu (TSRB 423) - 12:00:pm-1:15pm</li>
-<li>Thursday: Hossein (VL C449 Cubicle B): 10:45pm - 12:00pm</li>
-<li>Friday: Brighton (TSRB 523a) - 12pm-1:15pm</li>
-</ul></li>
-<li>Self-assessment online <a href="https://bloch.ece.gatech.edu/ece6254sp20">here</a>
-<ul>
-<li>Due Friday January 17, 2020 (11:59PM EST) (Friday January 24, 2020 for DL)</li>
-</ul></li>
-</ul>
+<div class="theorem" name="Binary NN classifier"> Let $\calX$ be a separable metric space. Let $p(\bfx|y=0)$, $p(\bfx|y=1)$ be such that, with probability one, $\bfx$ is either a continuity point of $p(\bfx|y=0)$ and $p(\bfx|y=1)$ or a point of non-zero probability measure. Then, as $N\to\infty$, $$R(h^{\text{B}}) \leq R(h^{\text{NN}})\leq 2R(h^{\text{B}})(1-R(h^{\text{B}}))$$
 </div>
-</section>
-<section id="recap-characterizing-generalization" class="slide level2">
-<h2>RECAP: Characterizing generalization</h2>
-<div>
-<ul>
-<li><div class="lemma" name="Hoeffding&#39;s inequality">
-<p>Let <span class="math inline">\(\{X_i\}_{i=1}^N\)</span> be i.i.d. real-valued zero-mean random variables such that <span class="math inline">\(X_i\in[a_i;b_i]\)</span> with <span class="math inline">\(a_i&lt;b_i\)</span>. Then for all <span class="math inline">\(\epsilon&gt;0\)</span> <span class="math display">\[\P{\abs{\frac{1}{N}\sum_{i=1}^N X_i}\geq\epsilon}\leq 2\exp\left(-\frac{2N^2\epsilon^2}{\sum_{i=1}^N(b_i-a_i)^2}\right).\]</span></p>
-</div></li>
+
+<!-- <li><div class="lemma" name="Hoeffding&#39;s inequality"> -->
+<!-- <p>Let <span class="math inline">\(\{X_i\}_{i=1}^N\)</span> be i.i.d. real-valued zero-mean random variables such that <span class="math inline">\(X_i\in[a_i;b_i]\)</span> with <span class="math inline">\(a_i&lt;b_i\)</span>. Then for all <span class="math inline">\(\epsilon&gt;0\)</span> <span class="math display">\[\P{\abs{\frac{1}{N}\sum_{i=1}^N X_i}\geq\epsilon}\leq 2\exp\left(-\frac{2N^2\epsilon^2}{\sum_{i=1}^N(b_i-a_i)^2}\right).\]</span></p> -->
+<!-- </div></li> -->
 <li>In our learning problem <span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h_j)-{R}(h_j)}\geq\epsilon}\leq 2\exp(-2N\epsilon^2)\]</span></li>
 <li><span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h^*)-{R}(h^*)}\geq\epsilon}\leq 2M\exp(-2N\epsilon^2)\]</span></li>
 <li>We can now choose <span class="math inline">\(N\geq \lceil\frac{1}{2\epsilon^2}\left(\ln \frac{2M}{\delta}\right)\rceil\)</span></li>
@@ -370,11 +354,11 @@ Reveal.initialize({
 
           { src: 'reveal.js/plugin/math/math.js', async: true },
           { src: 'reveal.js/plugin/notes/notes.js', async: true },
-          { src: 'reveal.js/plugin/menu/menu.js', async: true },
-          { src: 'reveal.js/plugin/chalkboard/chalkboard.js', async: false},
           { src: 'reveal.js/plugin/elapsed-time-bar/elapsed-time-bar.js'},
           { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },
           { src: 'reveal.js-plugins/mathsvg/math.js', async: true },
+          { src: 'reveal.js-plugins/menu/menu.js', async: true },
+          { src: 'reveal.js-plugins/chalkboard/chalkboard.js', async: false},
         ],
 
         pdfSeparateFragments: false,
