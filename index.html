@@ -1,159 +1,600 @@
-<!doctype html>
-<html lang="en">
-
+<!DOCTYPE html>
+<html>
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="Matthieu R Bloch">
+  <title>Why supervised learning may work</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <style type="text/css">
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
+  </style>
 
-	<title>Chris Richardson</title>
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
-	<meta name="description" content="A plugin for reveal.js">
-	<meta name="author" content="Chris Richardson">
+  <link rel="stylesheet" href="css/theme/matthieu-dark.css" id="theme">
 
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-
-	<link rel="stylesheet" href="reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="css/theme/matthieu-dark.css" id="theme">
-
-	<!-- Code syntax highlighting -->
-	<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
-	<!-- Font awesome -->
-	<!--
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	-->
-	<link rel="stylesheet" href="reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
-
-	<!-- Printing and PDF exports -->
-	<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-	</script>
-	<script async defer src="https://buttons.github.io/buttons.js"></script>
-	<!--[if lt IE 9]>
-	<script src="reveal.js/lib/js/html5shiv.js"></script>
-	<![endif]-->
+  <!--[if lt IE 9]>
+  <script src="reveal.js/lib/js/html5shiv.js"></script>
+  <![endif]-->
+  <style type="text/css">
+  p { text-align: left; }
+  </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-
 <body>
   <div class="reveal">
     <div class="slides">
 
-<body>
+<section id="title-N">
+  <h1 class="title">Why supervised learning may work</h1>
+  <p class="author">Matthieu R Bloch</p>
+  <p class="date">Thursday, January 16, 2020</p>
+</section>
 
-	<div class="reveal">
-		<!-- Any section element inside of this container is displayed as a slide -->
-		<div class="slides">
-			<section data-audio-text="This is a demo of the chalkboard plugin for Reveal js">
-				<h1>A Short Proof</h1>
-				<p>
-					<small>by Chris Richardson </small>
-				</p>
+<section id="logistics" class="slide level2">
+<h2>Logistics</h2>
+<div>
+<ul>
+<li>TAs and Office hours
+<ul>
+<li>Monday: Mehrdad (TSRB 523a) - 2pm-3:15pm</li>
+<li>Tuesday: TJ (VL C449 Cubicle D) - 1:30pm - 2:45pm</li>
+<li>Wednesday: Matthieu (TSRB 423) - 12:00:pm-1:15pm</li>
+<li>Thursday: Hossein (VL C449 Cubicle B): 10:45pm - 12:00pm</li>
+<li>Friday: Brighton (TSRB 523a) - 12pm-1:15pm</li>
+</ul></li>
+<li>Self-assessment online <a href="https://bloch.ece.gatech.edu/ece6254sp20">here</a>
+<ul>
+<li>Due Friday January 17, 2020 (11:59PM EST) (Friday January 24, 2020 for DL)</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="recap-characterizing-generalization" class="slide level2">
+<h2>RECAP: Characterizing generalization</h2>
+<div>
+<ul>
+<li><div class="lemma" name="Hoeffding&#39;s inequality">
+<p>Let <span class="math inline">\(\{X_i\}_{i=1}^N\)</span> be i.i.d. real-valued zero-mean random variables such that <span class="math inline">\(X_i\in[a_i;b_i]\)</span> with <span class="math inline">\(a_i&lt;b_i\)</span>. Then for all <span class="math inline">\(\epsilon&gt;0\)</span> <span class="math display">\[\P{\abs{\frac{1}{N}\sum_{i=1}^N X_i}\geq\epsilon}\leq 2\exp\left(-\frac{2N^2\epsilon^2}{\sum_{i=1}^N(b_i-a_i)^2}\right).\]</span></p>
+</div></li>
+<li>In our learning problem <span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h_j)-{R}(h_j)}\geq\epsilon}\leq 2\exp(-2N\epsilon^2)\]</span></li>
+<li><span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h^*)-{R}(h^*)}\geq\epsilon}\leq 2M\exp(-2N\epsilon^2)\]</span></li>
+<li>We can now choose <span class="math inline">\(N\geq \lceil\frac{1}{2\epsilon^2}\left(\ln \frac{2M}{\delta}\right)\rceil\)</span></li>
+<li><span class="math inline">\(M\)</span> can be quite large (almost exponential in <span class="math inline">\(N\)</span>) and, with enough data, we can generalize <span class="math inline">\(h^*\)</span>.</li>
+<li>How about learning <span class="math inline">\(h^{\sharp}\eqdef\argmin_{h\in\calH}R(h)\)</span>?</li>
+</ul>
+</div>
+</section>
+<section id="learning-can-work" class="slide level2">
+<h2>Learning can work!</h2>
+<ul>
+<li class="fragment"><div class="lemma">
+<p>If <span class="math inline">\(\forall j\in\calH\,\abs{\widehat{R}_N(h_j)-{R}(h_j)}\leq\epsilon\)</span> then <span class="math inline">\(\abs{R(h^*)-{R}(h^\sharp)}\leq 2\epsilon\)</span>.</p>
+</div></li>
+<li class="fragment">How do we make <span class="math inline">\(R(h^\sharp)\)</span> small?
+<ul>
+<li class="fragment">Need bigger hypothesis class <span class="math inline">\(\calH\)</span>! (could we take <span class="math inline">\(M\to\infty\)</span>?)</li>
+<li class="fragment">Fundamental trade-off of learning</li>
+</ul></li>
+</ul>
+<div class="fragment" style="display: inline-block; margin-left: auto; margin-right: auto;">
+<figure class style="height:450px; margin-left:auto; display: block;">
+<img class = "plain" style=""  src="ece6254-img/learningtradeoff.jpg" alt="Image">
+</figure>
+</div>
+</section>
+<section id="probably-approximately-correct-learnability" class="slide level2">
+<h2>Probably Approximately Correct Learnability</h2>
+<ul>
+<li class="fragment"><div class="definition" name="PAC learnability">
+A hypothesis set <span class="math inline">\(\calH\)</span> is (agnostic) PAC learnable if there exists a function <span class="math inline">\(N_\calH:]0;1[^2\to\bbN\)</span> and a learning algorithm such that:
+<ul>
+<li class="fragment">for very <span class="math inline">\(\epsilon,\delta\in]0;1[\)</span>,</li>
+<li class="fragment">for every <span class="math inline">\(P_\bfx\)</span>, <span class="math inline">\(P_{y|\bfx}\)</span>,</li>
+<li class="fragment">when running the algorithm on at least <span class="math inline">\(N_\calH(\epsilon,\delta)\)</span> i.i.d. examples, the algorithm returns a hypothesis <span class="math inline">\(h\in\calH\)</span> such that <span class="math display">\[\P[\bfx y]{\abs{{R}(h)-R(h^\sharp)}\leq\epsilon}\geq 1-\delta\]</span></li>
+</ul>
+</div></li>
+<li class="fragment"><p>The function <span class="math inline">\(N_{\calH}(\epsilon,\delta)\)</span> is called <em>sample complexity</em></p></li>
+<li class="fragment"><p>We have effectively already proved the following result</p></li>
+<li class="fragment"><div class="proposition">
+<p>A finite hypothesis set <span class="math inline">\(\calH\)</span> is PAC learnable with the Empirical Risk Minimization algorithm and with sample complexity <span class="math display">\[N_\calH(\epsilon,\delta)={\lceil{\frac{2\ln(2\card{\calH}/\delta)}{\epsilon^2}}\rceil}\]</span></p>
+</div></li>
+</ul>
+</section>
+<section id="what-is-a-good-hypothesis-set" class="slide level2">
+<h2>What is a good hypothesis set?</h2>
+<div class="fragment" style="display: inline-block; margin-left: auto; margin-right: auto;">
+<figure class style="height:450px; margin-left:auto; display: block;">
+<img class = "plain" style=""  src="ece6254-img/learningtradeoff.jpg" alt="Image">
+</figure>
+</div>
+<ul>
+<li class="fragment"><p>Ideally we want <span class="math inline">\(\card{\calH}\)</span> small so that <span class="math inline">\(R(h^*)\approx R(h^\sharp)\)</span> and get lucky so that <span class="math inline">\(R(h^*)\approx 0\)</span></p></li>
+<li class="fragment">In general this is <em>not</em> possible
+<ul>
+<li class="fragment">Remember, we usually have to learn <span class="math inline">\(P_{y|\bfx}\)</span>, not a function <span class="math inline">\(f\)</span></li>
+</ul></li>
+<li class="fragment"><em>Questions</em>
+<ul>
+<li class="fragment">What is the optimal binary classification hypothesis class?</li>
+<li class="fragment">How small can <span class="math inline">\(R(h^*)\)</span> be?</li>
+</ul></li>
+</ul>
+</section>
+<section id="supervised-learning-model" class="slide level2">
+<h2>Supervised learning model</h2>
+<p>We revisit the supervised learning setup (<em>slight</em> change in notation)</p>
+<ol type="1">
+<li class="fragment">Dataset <span class="math inline">\(\calD\eqdef\{(X_1,Y_1),\cdots,(X_N,Y_N)\}\)</span>
+<ul>
+<li class="fragment"><span class="math inline">\(\{X_i\}_{i=1}^N\)</span> <em>drawn i.i.d. from unknown</em> <span class="math inline">\(P_{X}\)</span> on <span class="math inline">\(\calX=\bbR^d\)</span></li>
+<li class="fragment"><span class="math inline">\(\{Y_i\}_{i=1}^N\)</span> labels with <span class="math inline">\(\calY=\{0,1,\cdots,K-1\}\)</span> (multiclass classification)</li>
+</ul></li>
+<li class="fragment"><p>Unknown <span class="math inline">\(P_{Y|X}\)</span></p></li>
+<li class="fragment"><p>Binary loss function <span class="math inline">\(\ell:\calY\times\calY\rightarrow\bbR^+:(y_1,y_2)\mapsto \indic{y_1\neq y_2}\)</span></p></li>
+</ol>
+<ul>
+<li class="fragment"><p>The risk of a classifier <span class="math inline">\(h\)</span> is <span class="math display">\[
+R(h)\eqdef\E[XY]{\indic{h(X)\neq Y}} = \P[X Y]{h(X)\neq Y}
+\]</span></p></li>
+<li class="fragment"><p>We will not worry about <span class="math inline">\(\calH\)</span> directly, but rather about about <span class="math inline">\(R(\hat{h}_N)\)</span> for some <span class="math inline">\(\hat{h}_N\)</span> that we will estimate from the data</p></li>
+</ul>
+</section>
+<section id="bayes-classifier" class="slide level2">
+<h2>Bayes classifier</h2>
+<ul>
+<li class="fragment">What is the <em>best</em> risk (smallest) that we can achieve?
+<ul>
+<li class="fragment">Assume that we actually know <span class="math inline">\(P_{X}\)</span> and <span class="math inline">\(P_{Y|X}\)</span></li>
+<li class="fragment">Denote the <em>a posteriori</em> class probabilities of <span class="math inline">\(\bfx\in\calX\)</span> by <span class="math display">\[ \eta_k(\bfx) \eqdef \P{Y=k|X=\bfx}\]</span></li>
+<li class="fragment">Denote the <em>a priori</em> class probabilities by <span class="math display">\[\pi_k\eqdef \P{Y=k}\]</span></li>
+</ul></li>
+<li class="fragment"><div class="lemma" name="Bayes classifier">
+<p>The classifier <span class="math inline">\(h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \eta_k(\bfx)\)</span> is optimal, i.e., for <em>any</em> classifier <span class="math inline">\(h\)</span>, we have <span class="math inline">\(R(h^\text{B})\leq R(h)\)</span>. <span class="math display">\[
+R(h^{\text{B}}) = \E[X]{1-\max_k \eta_k(X)}
+\]</span></p>
+</div></li>
+<li class="fragment">Terminology
+<ul>
+<li class="fragment"><span class="math inline">\(h^B\)</span> is called the <em>Bayes classifier</em></li>
+<li class="fragment"><span class="math inline">\(R_B\eqdef R(h^B)\)</span> is called the <em>Bayes risk</em></li>
+</ul></li>
+</ul>
+<!--
+## Other forms of the Bayes classifier
 
-			</section>
-			<section>
-				<h2>Problem Statement</h2>
-				<p>
-					We want to prove the following postulate:
-				</p>
-				<p class="fragment">
-					The shortest distance between two points is a straight line.
-				</p>
-			</section>
-			<section>
-				<h2>Background</h2>
-				<p>
-					Calculus of Variations
-				</p>
-				<p class="fragment">
-                    <svg width="200" height="200">
-                        <text font-size="20" x="100" y="100">$ a^2 + b^2 = c^2 $</text>
-                    </svg>
-				</p>
-			</section>
+- $h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \eta_k(\bfx)$
 
-		</div>
-	</div>
+- $h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \pi_k p_{X|Y}(\bfx|k)$
 
-	<script src="reveal.js/lib/js/head.min.js"></script>
-	<script src="reveal.js/js/reveal.js"></script>
+- For $K=2$ (binary classification): log-likelihood ratio test
+  $$
+    \log\frac{p_{X|Y}(\bfx|1)}{p_{X|Y}(\bfx|0)} \gtrless \log \frac{\pi_0}{\pi_1}
+  $$
+
+- If all classes are equally likely $\pi_0=\pi_1=\cdots=\pi_{K-1}$
+  $$
+    h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} p_{X|Y}(\bfx|k)
+  $$
+
+- <div class="example" name="Bayes classifier"> Assume $X|Y=0\sim\calN(0,1)$ and $X|Y=1\sim\calN(1,1)$.
+  The Bayes risk for $\pi_0=\pi_1$ is $R(h^\text{B})=\Phi(-\frac{1}{2})$ with $\Phi\eqdef\text{Normal CDF}$
+</div>
+
+- In practice we do *not* now $P_X$ and $P_{Y|X}$
+  - *Plugin methods*: use the *data* to learn the distributions and plug result in Bayes classifier
+
+
+## Other loss functions
+
+- We have focused on the risk $\P{h(X)\neq Y}$ obtained for a binary loss function $\indic{h(X)\neq Y}$
+
+- There are many situations in which this is not appropriate
+  - Cost sensitive classification: false alarm and  missed detection may not be equivalent
+  $$
+     c_0\indic{h(X)\neq 0\text{ and }Y=0} + c_1 \indic{h(X)\neq 1\text{ and }Y=1}
+  $$
+  - Unblanced data set: the probability of the largest class will dominate
+
+- More to explore in the next homework!
+
+## Nearest neighbor classifier
+
+- Back to our training dataset $\calD\eqdef\{(\bfx_1,y_1),\cdots,(\bfx_N,y_N)\}$
+
+- The *nearest-neighbor* (NN) classifier is $h^{\text{NN}}(\bfx)\eqdef y_{\text{NN}(\bfx)}$ where $\text{NN}(\bfx)\eqdef \argmin_i \norm{\bfx_i-\bfx}$
+
+- Risk of NN classifier conditioned on $\bfx$ and $\bfx_{\text{NN}(\bfx)}$
+  $$
+    R_{\text{NN}}(\bfx,\bfx_{\text{NN}(\bfx)}) = \sum_{k}\eta_k(\bfx_{\text{NN}(\bfx)})(1-\eta_k(\bfx))= \sum_{k}\eta_k(\bfx)(1-\eta_k(\bfx_{\text{NN}(\bfx)})).
+  $$
+  - How well does the average risk $R_{\text{NN}}=R(h^{\text{NN}})$ compare to the Bayes risk for large $N$?
+
+- <div class="lemma"> Let $\bfx$, $\{\bfx_i\}_{i=1}^N$ be i.i.d. $\sim P_{\bfx}$ in a separable metric space $\calX$. Let
+  $\bfx_{\text{NN}(\bfx)}$ be the nearest neighbor of $\bfx$. Then $\bfx_{\text{NN}(\bfx)} \to \bfx$ with probability one as $N\to\infty$
+</div>
+
+- <div class="theorem" name="Binary NN classifier"> Let $\calX$ be a separable metric space. Let $p(\bfx|y=0)$, $p(\bfx|y=1)$ be such that, with probability one, $\bfx$ is either a continuity point of $p(\bfx|y=0)$ and $p(\bfx|y=1)$ or a point of non-zero probability measure. Then, as $N\to\infty$, $$R(h^{\text{B}}) \leq R(h^{\text{NN}})\leq 2R(h^{\text{B}})(1-R(h^{\text{B}}))$$
+</div>
+
+## K Nearest neighbor classifier
+
+- Can drive the risk of the NN classifier to the Bayes risk by *increasing* the size of the neighborhood
+  - Assign label to $\bfx$ by taking majority vote among $K$ nearest neighbors $h^\text{$K$-NN}$
+  $$\lim_{N\to\infty}\E{R(h^{\text{$K$-NN}})}\leq \left(1+\sqrt{\frac{2}{K}}\right)R(h^{\text{B}})$$
+
+- <div class="definition"> Let $\hat{h}_N$ be a classifier learned from a set of $N$ data points. The classifier  $\hat{h}_N$ is *consistent* if $\E{R(\hat{h}_N)}\to R_B$ as $N\to\infty$.
+</div>
+
+- <div class="theorem" name="Stone's Theorem"> If $N\to\infty$, $K\to\infty$, $K/N\to 0$, then $h^{\text{$K$-NN}}$ is consistent
+</div>
+
+- Choosing $K$ is a problem of *model selection*
+  - Do *not* choose $K$ by minimizing the empirical risk on training: $$\widehat{R}_N(h^{\text{$1$-NN}}) = \frac{1}{N}\sum_{i=1}^N\indic{h_1(\bfx_i)=y_i}=0$$
+  - Need to rely on estimates from model selection techniques (more later!)
+
+
+## K Nearest neighbor classifier
+
+- Given enough data, a $K$-NN classifier will do just as well as pretty much any other method
+
+- The number of samples $N$ can be huge (especially in high-dimension)
+
+- The choice of $K$ matters a lot, model selection is important
+
+- Finding the nearest neighbors out of a millions of datapoints is still computatinally hard
+  -  $K$-d trees help, but still expensive in high dimension when $N\approx d$
+
+- We will discuss other classifiers that make *more assumptions* about the underlying data
+
+## Plugin methods
+
+- The Bayes classifier requires the knowledge of $P_X$ and $P_{Y|X}$
+
+- We can learn $P_X$ and $P_{Y|X}$ from the data itself and *plug* the result into the Bayes classifier
+
+- The Bayes classifier only requires $P_{Y|X}$
+  - *Generative classifier*: learn $P_X$ and $P_{Y|X}$ (can compute $P_{X|Y}$)
+  - *Discriminative classifier*: learn $P_{Y|X}$ directly
+
+- Models can be of two types
+  - *Parametric*: strong assumption about underlying distribution (e.g., Gaussian, Multinomial, etc.)
+  - *Non-Parametric*: no assumption about form of underlying distribution
+
+- All possible combinations are possible
+
+- What are $K$-NN classifiers?
+https://stats.stackexchange.com/questions/105979/is-knn-a-discriminative-learning-algorithm
+
+## Naive Bayes
+
+- Consider $\bfx={[x_1,\cdots,x_d]}^\intercal\in\bbR^d$ (random) feature vector and $y$ the label
+  - *Naive asssumption:* Given $y$, the features $\{x_i\}_{i=1}^d$ of $\bfx$ are *independent*, i.e.,  $P_{\bfx|y} = \prod_{i=1}^d P_{x_i|y}$
+  - Main benefit: only need univariate densities $P_{x_i|y}$, combine discrete/continous features
+
+- *Procedure*
+  - Estimate a priori class probabilities: $\pi_k$ for $0\leq k\leq K-1$
+  - Esimate class conditional densities $p_{x_i|y}(x|k)$ for $1\leq i\leq d$ and $0\leq k\leq K-1$
+
+- <div class="lemma"> The maximum likelihood estimate of $\pi_k$ is $\hat{\pi}_k = \frac{N_k}{N}$ where $N_k\eqdef \card{\{y_i:y_i=k\}}$
+</div>
+
+- What about $P_{\bfx|y}$?
+  - Continuous features: often Gaussian, use ML estimate
+  - Discrete (categorical) features: often Multinomial, use ML estimate
+
+## Naive Bayes (ct'd)
+
+- Assume $j$th feature $x_j$ takes $J$ distinct values $\{0,\dots,J-1\}$ <!--multinomial model for $P_{x_j|y}$
+
+- <div class="lemma"> The maximum likelihood estimate of $P_{x_j|y}(\ell|k)$ is $\widehat{P}_{x_j|y}(\ell|k) = \frac{N^{(j)}_{\ell,k}}{N_k}$ where $N^{(j)}_{\ell,k}\eqdef \card{\{\bfx:y=k\text{ and } x_j=\ell\}}$
+</div>
+
+- The naive bayes estimator is $h^{\text{NB}}(\bfx)=\argmax_{k} \hat{\pi}_k\prod_{j=1}^d \widehat{P}_{x_j|y}(x_j|k)$
+
+- **Illustration:** Gaussian case
+
+## Naive Bayes and Bag of Words
+
+- Classification of documents into categories (politics, sports, etc.)
+  - Document as vector $\bfx={[x_1,\cdots,x_d]}^\intercal$ with $x_j$ the *number* of occurences of word $j$ in document
+  - Model documents of length $n$ and assume words are distributed among the $d$ words independently at random (multinonial distribution)
+
+- Estimate parameters
+  - Compute the ML estimate of the document classes $\hat{\pi}_k = \frac{N_k}{N}$
+  - Compute the ML estimate of the probability that word $j$ occurs in class $k$ across all documents: $$\hat{\mu}_{j,k}=\frac{\sum_{\ell}\ell N^{(j)}_{\ell,k}}{\sum_{j=1}^d\sum_{\ell}\ell N^{(j)}_{\ell,k}}$$
+
+- Run classifier: $\hat{h}^{\text{NB}}=\argmax_{k}\hat{\pi}_k\prod_{j=1}^d\left(\hat{\mu}_{j,k}\right)^{x_j}$
+
+- Weakness of approach: some words may not show up at *training* but show up at *testing*
+    - Use *Laplace smoothing* $$\hat{\mu}_{j,k}=\frac{1+\sum_{\ell}\ell N^{(j)}_{\ell,k}}{d+\sum_{j=1}^d\sum_{\ell}\ell N^{(j)}_{\ell,k}}$$
+-->
+</section>
+    </div>
+  </div>
+
+  <script src="reveal.js/lib/js/head.min.js"></script>
+  <script src="reveal.js/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        slideNumber:"c/t",
+        // Push each slide change to the browser history
+        history: false,
+
+        // Vertical centering of slides
+        center: false,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1600,
+        height: 1000,
+
+        math: {
+          mathjax: '../MathJax-src/components/src/tex-mml-svg.js',
+
+          jax: ["input/TeX","output/HTML-CSS"],
+
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // Optional reveal.js plugins
+
+        dependencies: [
+          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+          { src: 'reveal.js/plugin/math/math.js', async: true },
+          { src: 'reveal.js/plugin/notes/notes.js', async: true },
+          { src: 'reveal.js/plugin/menu/menu.js', async: true },
+          { src: 'reveal.js/plugin/chalkboard/chalkboard.js', async: false},
+          { src: 'reveal.js/plugin/elapsed-time-bar/elapsed-time-bar.js'},
+          { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },
+          { src: 'reveal.js-plugins/mathsvg/math.js', async: true },
+        ],
+
+        pdfSeparateFragments: false,
+        allottedTime: 75 * 60 * 1000, // 3 minutes
+        pdfExportShortcut: 'E',
+        chalkboard: {
+                      src: "ece6254sp20-lecture4-slides.json",
+                    readOnly: false,
+        	theme: "whiteboard",
+          toggleChalkboardButton: { left: "30px", bottom: "60px", top: "auto", right: "auto" },
+          toggleNotesButton: { left: "30px", bottom: "90px", top: "auto", right: "auto" },
+          toggleBlackButton: { left: "30px", bottom: "120px", top: "auto", right: "auto" },
+          toggleBlueButton: { left: "30px", bottom: "150px", top: "auto", right: "auto" },
+          toggleRedButton: { left: "30px", bottom: "180px", top: "auto", right: "auto" },
+          toggleDownloadButton: { left: "60px", bottom: "33px", top: "auto", right: "auto" },
+        },
+        keyboard: {
+          67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed
+          66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
+          46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
+          8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed
+          68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed
+		  88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
+		  89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
+        },
+		pen: ['crosshair'],
+      });
+    </script>
 
 	<script>
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
-				mouseWheel: true,
-				menu: { // Menu works best with font-awesome installed: sudo apt-get install fonts-font-awesome
-					themes: false,
-					transitions: false,
-					markers: true,
-					hideMissingTitles: true,
-				},
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
-
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-//					{ src: 'reveal.js-plugins/audio-slideshow/slideshow-recorder.js'},
-					{ src: 'reveal.js-plugins/audio-slideshow/audio-slideshow.js'},
-					{ src: 'reveal.js-plugins/chalkboard/chalkboard.js'},
-					{ src: 'reveal.js-plugins/menu/menu.js'},
-                    { src: 'reveal.js-plugins/mathsvg/math.js', async: true },
-				],
-				audio: {
-					prefix: 'chalkboard/',
-					suffix: '.ogg',
-					defaultDuration: 5,
-//					textToSpeechURL: "http://api.voicerss.org/?key=[YOUR_KEY]&hl=en-gb&c=ogg&src=",
-					advance: 500,
-					autoplay: false,
-					defaultText: true,
-					playerOpacity: 0.2,
-				},
-				chalkboard: { // font-awesome.min.css must be available
-					src: "chalkboard/chalkboard.json",
-					toggleChalkboardButton: { left: "80px" },
-					toggleNotesButton: { left: "130px" },
-// 					pen:  [ 'crosshair', 'pointer' ]
-//					theme: "whiteboard",
-//					background: [ 'rgba(127,127,127,.1)' , 'reveal.js-plugins/chalkboard/img/whiteboard.png' ],
-// 					pen:  [ 'crosshair', 'pointer' ]
-//					pen: [ url('reveal.js-plugins/chalkboard/img/boardmarker.png), auto' , 'url(reveal.js-plugins/chalkboard/img/boardmarker.png), auto' ],
-//				        color: [ 'rgba(0,0,255,1)', 'rgba(0,0,255,0.5)' ],
-//				        draw: [ (RevealChalkboard) ?  RevealChalkboard.drawWithPen : null , (RevealChalkboard) ? RevealChalkboard.drawWithPen : null ],
-				},
-				keyboard: {
-				    67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle chalkboard when 'c' is pressed
-				    66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed
-				    46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed
-				     8: function() { RevealChalkboard.reset() },	// reset all chalkboard data when 'BACKSPACE' is pressed
-				    68: function() { RevealChalkboard.download() },	// downlad chalkboard drawing when 'd' is pressed
-				    88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed
-				    89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed
-				    90: function() { RevealChalkboard.download();  }, 	// press 'z' to download zip containing audio files
-//				    84: function() { Recorder.fetchTTS(); } 	// press 't' to fetch TTS audio files
-				},
-			});
-
-		function changeTheme(input) {
-			var config = {};
-			config.theme = input.value;
-			RevealChalkboard.configure(config);
-			input.blur();
-		}
+	MathJax = {
+		tex: {
+			inlineMath: [['\\(','\\)']],
+			macros: {
+		  calA: "{\\mathcal{A}}",
+          calB: "{\\mathcal{B}}",
+		  calC: "{\\mathcal{C}}",
+          calD: "{\\mathcal{D}}",
+          calK: "{\\mathcal{K}}",
+          calE: "{\\mathcal{E}}",
+          calF: "{\\mathcal{F}}",
+          calH: "{\\mathcal{H}}",
+          calL: "{\\mathcal{L}}",
+          calN: "{\\mathcal{N}}",
+		  calO: "{\\mathcal{O}}",
+          calS: "{\\mathcal{S}}",
+          calT: "{\\mathcal{T}}",
+          calU: "{\\mathcal{U}}",
+		  calV: "{\\mathcal{V}}",
+		  calW: "{\\mathcal{W}}",
+          calX: "{\\mathcal{X}}",
+          calY: "{\\mathcal{Y}}",
+          calZ: "{\\mathcal{Z}}",
+          avgD: ["{\\mathbb{D}\\!\\left(#1\\Vert #2\\right)}",2],
+          bfA: "{\\mathbf{A}}",
+		  bfB: "{\\mathbf{B}}",
+		  bfD: "{\\mathbf{D}}",
+		  bfG: "{\\mathbf{G}}",
+		  bfH: "{\\mathbf{H}}",
+		  bfI: "{\\mathbf{I}}",
+		  bfP: "{\\mathbf{P}}",
+		  bfQ: "{\\mathbf{Q}}",
+		  bfR: "{\\mathbf{R}}",
+		  bfS: "{\\mathbf{S}}",
+		  bfU: "{\\mathbf{U}}",
+		  bfV: "{\\mathbf{V}}",
+		  bfW: "{\\mathbf{W}}",
+		  bfX: "{\\mathbf{X}}",
+		  bfY: "{\\mathbf{Y}}",
+		  bfZ: "{\\mathbf{Z}}",
+		  bfone: "{\\mathbf{1}}",
+	      bfx: "{\\mathbf{x}}",
+		  bfr: "{\\mathbf{r}}",
+		  bfk: "{\\mathbf{k}}",
+		  bfm: "{\\mathbf{m}}",
+		  bfy: "{\\mathbf{y}}",
+          bfu: "{\\mathbf{u}}",
+          bfv: "{\\mathbf{v}}",
+          bfw: "{\\mathbf{w}}",
+          bfz: "{\\mathbf{z}}",
+          bfb: "{\\mathbf{b}}",
+          bfn: "{\\mathbf{n}}",
+		  bfzero: "{\\boldsymbol{0}}",
+		  bfalpha: "{\\boldsymbol{\\alpha}}",
+		  bfmu: "{\\boldsymbol{\\mu}}",
+		  bfbeta: "{\\boldsymbol{\\beta}}",
+		  bftheta: "{\\boldsymbol{\\theta}}",
+		  bfGamma: "{\\boldsymbol{\\Gamma}}",
+		  bfLambda: "{\\boldsymbol{\\Lambda}}",
+		  bfSigma: "{\\boldsymbol{\\Sigma}}",
+		  bfTheta: "{\\boldsymbol{\\Theta}}",
+          bfI: "{\\mathbf{I}}",
+          bfK: "{\\mathbf{K}}",
+		  bbK: "{\\mathbb{K}}",
+          bbN: "{\\mathbb{N}}",
+          bbR: "{\\mathbb{R}}",
+		  GF: ["\\mathbb{F}_{#1}",1],
+          card: ["{|{#1}|}",1],
+          abs: ["{\\left|{#1}\\right|}",1],
+          sgn: ["{\\text{sgn}\\left({#1}\\right)}",1],
+          norm: ["{\\left\\Vert{#2}\\right\\Vert}_{#1}",2,""],
+          set: ["{\\{#1\\}}",1],
+		  trace: ["\\text{trace}\\left(#1\\right)",1],
+          argmin: "\\mathop{\\text{argmin}}",
+          argmax: "\\mathop{\\text{argmax}}",
+          intseq: ["[{#1};{#2}]",2],
+          eqdef: "\\triangleq",
+          E: ["{\\mathbb{E}_{#1}\\!\\left[#2\\right]}",2,""],
+          Var: ["{\\text{Var}(#1)}",1],
+          P: ["{\\mathbb{P}_{#1}\\left(#2\\right)}",2,""],
+          indic: ["{\\mathbf{1}\\{#1\\}}",1],
+          bold: ["{\\bf #1}",1],
+		  mat: ["\\left[\\begin{array}{#1}#2\\end{array}\\right]",2],
+		  avgH: ["\\mathbb{H}\\!\\left(#1\\right)",1],
+		  avgI: ["\\mathbb{I}\\!\\left(#1\\right)",1],
+		  V : ["\\mathbb{V}\\left(#1\\right)",1],
+		  supp : ["\\text{supp}\\left(#1\\right)",1],
+		  dotp : ["\\langle #1,#2\\rangle",2]
+		},
+		},
+		svg: {
+			fontCache: 'global'
+		},
+	};
 	</script>
 
-</body>
+	<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      "HTML-CSS": {
+          preferredFont: "TeX",
+          availableFonts: ["TeX"]
+      },
+      TeX: {
+        Macros: {
+          calA: "{\\mathcal{A}}",
+          calB: "{\\mathcal{B}}",
+		  calC: "{\\mathcal{C}}",
+          calD: "{\\mathcal{D}}",
+          calK: "{\\mathcal{K}}",
+          calE: "{\\mathcal{E}}",
+          calF: "{\\mathcal{F}}",
+          calH: "{\\mathcal{H}}",
+          calL: "{\\mathcal{L}}",
+          calN: "{\\mathcal{N}}",
+		  calO: "{\\mathcal{O}}",
+          calS: "{\\mathcal{S}}",
+          calT: "{\\mathcal{T}}",
+          calU: "{\\mathcal{U}}",
+		  calV: "{\\mathcal{V}}",
+		  calW: "{\\mathcal{W}}",
+          calX: "{\\mathcal{X}}",
+          calY: "{\\mathcal{Y}}",
+          calZ: "{\\mathcal{Z}}",
+          avgD: ["{\\mathbb{D}\\!\\left(#1\\Vert #2\\right)}",2],
+          bfA: "{\\mathbf{A}}",
+		  bfB: "{\\mathbf{B}}",
+		  bfD: "{\\mathbf{D}}",
+		  bfG: "{\\mathbf{G}}",
+		  bfH: "{\\mathbf{H}}",
+		  bfI: "{\\mathbf{I}}",
+		  bfP: "{\\mathbf{P}}",
+		  bfQ: "{\\mathbf{Q}}",
+		  bfR: "{\\mathbf{R}}",
+		  bfS: "{\\mathbf{S}}",
+		  bfU: "{\\mathbf{U}}",
+		  bfV: "{\\mathbf{V}}",
+		  bfW: "{\\mathbf{W}}",
+		  bfX: "{\\mathbf{X}}",
+		  bfY: "{\\mathbf{Y}}",
+		  bfZ: "{\\mathbf{Z}}",
+		  bfone: "{\\mathbf{1}}",
+	      bfx: "{\\mathbf{x}}",
+		  bfr: "{\\mathbf{r}}",
+		  bfk: "{\\mathbf{k}}",
+		  bfm: "{\\mathbf{m}}",
+		  bfy: "{\\mathbf{y}}",
+          bfu: "{\\mathbf{u}}",
+          bfv: "{\\mathbf{v}}",
+          bfw: "{\\mathbf{w}}",
+          bfz: "{\\mathbf{z}}",
+          bfb: "{\\mathbf{b}}",
+          bfn: "{\\mathbf{n}}",
+		  bfzero: "{\\boldsymbol{0}}",
+		  bfalpha: "{\\boldsymbol{\\alpha}}",
+		  bfmu: "{\\boldsymbol{\\mu}}",
+		  bfbeta: "{\\boldsymbol{\\beta}}",
+		  bftheta: "{\\boldsymbol{\\theta}}",
+		  bfGamma: "{\\boldsymbol{\\Gamma}}",
+		  bfLambda: "{\\boldsymbol{\\Lambda}}",
+		  bfSigma: "{\\boldsymbol{\\Sigma}}",
+		  bfTheta: "{\\boldsymbol{\\Theta}}",
+          bfI: "{\\mathbf{I}}",
+          bfK: "{\\mathbf{K}}",
+		  bbK: "{\\mathbb{K}}",
+          bbN: "{\\mathbb{N}}",
+          bbR: "{\\mathbb{R}}",
+		  GF: ["\\mathbb{F}_{#1}",1],
+          card: ["{|{#1}|}",1],
+          abs: ["{\\left|{#1}\\right|}",1],
+          sgn: ["{\\text{sgn}\\left({#1}\\right)}",1],
+          norm: ["{\\left\\Vert{#2}\\right\\Vert}_{#1}",2,""],
+          set: ["{\\{#1\\}}",1],
+		  trace: ["\\text{trace}\\left(#1\\right)",1],
+          argmin: "\\mathop{\\text{argmin}}",
+          argmax: "\\mathop{\\text{argmax}}",
+          intseq: ["[{#1};{#2}]",2],
+          eqdef: "\\triangleq",
+          E: ["{\\mathbb{E}_{#1}\\!\\left[#2\\right]}",2,""],
+          Var: ["{\\text{Var}(#1)}",1],
+          P: ["{\\mathbb{P}_{#1}\\left(#2\\right)}",2,""],
+          indic: ["{\\mathbf{1}\\{#1\\}}",1],
+          bold: ["{\\bf #1}",1],
+		  mat: ["\\left[\\begin{array}{#1}#2\\end{array}\\right]",2],
+		  avgH: ["\\mathbb{H}\\!\\left(#1\\right)",1],
+		  avgI: ["\\mathbb{I}\\!\\left(#1\\right)",1],
+		  V : ["\\mathbb{V}\\left(#1\\right)",1],
+		  supp : ["\\text{supp}\\left(#1\\right)",1]
+        }
+      }
+    });
+    </script>
+    </body>
 </html>
