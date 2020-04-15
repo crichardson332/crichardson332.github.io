@@ -4,38 +4,38 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>A Proof</title>
+	<title>Chalkboard with Reveal.js</title>
 
 	<meta name="description" content="A plugin for reveal.js">
-	<meta name="author" content="Chris Richardson">
+	<meta name="author" content="Asvin Goel">
 
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
-	<link rel="stylesheet" href="reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+	<link rel="stylesheet" href="../reveal.js/css/reveal.css">
+	<link rel="stylesheet" href="../reveal.js/css/theme/white.css" id="theme">
 
 	<!-- Code syntax highlighting -->
-	<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+	<link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
 	<!-- Font awesome -->
 	<!--
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	-->
-	<link rel="stylesheet" href="reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
+	-->	
+	<link rel="stylesheet" href="../reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
 
 	<!-- Printing and PDF exports -->
 	<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 	</script>
 	<script async defer src="https://buttons.github.io/buttons.js"></script>
 	<!--[if lt IE 9]>
-	<script src="reveal.js/lib/js/html5shiv.js"></script>
+	<script src="../reveal.js/lib/js/html5shiv.js"></script>
 	<![endif]-->
 </head>
 
@@ -45,22 +45,24 @@
 		<!-- Any section element inside of this container is displayed as a slide -->
 		<div class="slides">
 			<section data-audio-text="This is a demo of the chalkboard plugin for Reveal js">
-				<h1>A Short Proof</h1>
+				<h1>Chalkboard with Reveal.js</h1>
 				<p>
-					<small>by Chris Richardson </small>
+					<small>Created by <a href="http://www.telematique.eu" >Asvin Goel</a></small>
 				</p>
+
+				<p>Please click the play button below.</p>
 
 			</section>
 			<section data-audio-text="Have you ever missed the traditional classroom experience where you can quickly sketch something on a chalkboard?">
 				<h2>Hey there</h2>
-				<p>
+				<p> 
 					Have you ever missed the traditional classroom experience where you can quickly sketch something on a chalkboard?
 				</p>
 				<p class="fragment" data-fragment-index=0 data-audio-advance="false" data-audio-text="Just press b or click on the pencil in a square button to open and close your chalkboard. After you are done please advance to the next slide and click the play button.">
-					Just press 'b' or click on the &nbsp;<i class="fa fa-pen-square"></i>&nbsp; button to open and close your chalkboard.
+					Just press 'b' or click on the &nbsp;<i class="fa fa-pen-square"></i>&nbsp; button to open and close your chalkboard. 
 				</p>
 				<form name="theme" class="fragment" data-fragment-index=0 style="font-size: 20px">
-					Select appearance:
+					Select appearance: 
 					<input type="radio" name="theme" value="chalkboard" onclick="changeTheme(this);" checked autocomplete="off"> Chalkboard</input>
 					<input type="radio" name="theme" value="whiteboard" onclick="changeTheme(this);" autocomplete="off"> Whiteboard</input>
 				</form>
@@ -70,7 +72,7 @@
 			</section>
 			<section data-audio-text="Drawing is easy. Just click the left or right mouse button and drag to write on or wipe the chalkboard. With the delete key you can clear the chalkboard.">
 				<h2>Easy to use</h2>
-				<ul>
+				<ul> 
 					<li> Click the left mouse button to write on the chalkboard</li>
 					<li> Click the right mouse button to wipe the chalkboard</li>
 					<li> Click the 'DEL' key to clear the chalkboard </li>
@@ -78,15 +80,15 @@
 			</section>
 			<section data-audio-text="The plugin also has basic touch support.">
 				<h2>Touch support</h2>
-				<ul>
+				<ul> 
 					<li> Touch and drag to write on the chalkboard</li>
 					<li> Touch and hold, then drag to wipe the chalkboard</li>
 				</ul>
 			</section>
 			<section data-audio-text="Did you notice the pencil button?">
 				<h2>Make notes on slides</h2>
-				<p>
-					Did you notice the &nbsp;<i class="fa fa-pen"></i>&nbsp; button?
+				<p> 
+					Did you notice the &nbsp;<i class="fa fa-pen"></i>&nbsp; button? 
 				</p>
 				<p class="fragment" data-fragment-index=0  data-audio-advance="false" data-audio-text="By pressing c or clicking the pencil button you can start and stop the notes taking mode allowing you to write comments and notes directly on the slide. After you are done please advance to the next slide and click the play button.">
 					By pressing 'c' or clicking the button you can start and stop the notes taking mode allowing you to write comments and notes directly on the slide.
@@ -101,7 +103,7 @@
 					By default, a drawing cannot be edited after navigating away from the slide.
 				</p>
 				<p  class="fragment">
-					Please check out <a href="https://github.com/rajgoel/reveal.js-plugins/chalkboard">Github</a> for a documentation of the settings.
+					Please check out <a href="https://github.com/rajgoel/reveal.js-plugins/chalkboard">Github</a> for a documentation of the settings.  
 				</p>
 			</section>
 			<section>
@@ -112,14 +114,14 @@
 				<p class="fragment">The pre-recorded drawings can be added to the slideshow for playback.
 				</p>
 			</section>
-			<section data-audio-text="If you are not an artist, you can also create a JSON-file based on an SVG image">
+			<section data-audio-text="If you are not an artist, you can also create a JSON-file based on an SVG image">  
 				<h3>JSON-file</h3>
 				<p>
 					If you are not an artist, you can also create a JSON-file based on an SVG image.
 				</p>
 
 			</section>
-			<section data-audio-text="Here is the image that has been used to create the chalkboard drawing on the previous slide">
+			<section data-audio-text="Here is the image that has been used to create the chalkboard drawing on the previous slide">  
 				<h3>Original image</h3>
 				<img class="stretch" src="chalkboard/Manga_grayscale.svg"></img>
 				<p style="color:dimgray; font-size: 20px">
@@ -127,19 +129,19 @@
 				</p>
 
 			</section>
-			<section data-audio-text="First, the image has to be preprocessed e.g. with inkscape">
+			<section data-audio-text="First, the image has to be preprocessed e.g. with inkscape">  
 				<h3>Preprocessing with <a href="https://inkscape.org">Inkscape</a></h3>
 				<ul>
 					<li>Remove all elements which are not lines, e.g. shadows</li>
 					<li>Convert SVG path coordinates from relative to absolute (<a href="http://stackoverflow.com/questions/6890685/is-there-a-tool-to-convert-svg-line-paths-from-absolute-to-relative">see here</a>)</li>
 					<li>Convert curves to lines (<a href="http://www.inkscapeforum.com/viewtopic.php?t=4308#p19653">see here</a>)</li>
-				</ul>
+				</ul>			
 			</section>
-			<section data-audio-text="This is the sample image after editing">
+			<section data-audio-text="This is the sample image after editing">  
 				<h3>Edited image</h3>
 				<img class="stretch" src="chalkboard/Manga_lines.svg"></img>
 			</section>
-			<section data-audio-text="The sample image can be translated with the bash script into a JSON-file">
+			<section data-audio-text="The sample image can be translated with the bash script into a JSON-file">  
 				<h3>Create JSON-file with bash script</h3>
 				<pre data-prevent-swipe><code data-trim>
 grep 'd=\"M' Manga_lines.svg | sed 's/L/ /g' | sed -e 's/  */ /g'  | sed 's/d="M//g'  | sed 's/"//g' > tmp.csv
@@ -151,7 +153,7 @@ JSON=`cat tmp.csv | while read LINE; do
  prefix='{"x":'
  suffix=','
  for i in $LINE; do
-  if [ $prefix == '{"x":' ]; then
+  if [ $prefix == '{"x":' ]; then 
    OUTPUT=$OUTPUT$prefix$i$suffix
    prefix='"y":'
    suffix='},'
@@ -167,7 +169,7 @@ done`
 END=`awk 'END {print (NR)*500+4000}' tmp.csv`
 echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"slide":{"h":6,"v":0,"f":0},"events":[{"type":"open","begin":4000},'$JSON'], "duration":'$END'}]}]' | sed 's/,]/]/g' 				</code></pre>
 			</section>
-			<section data-audio-text="The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.">
+			<section data-audio-text="The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.">  
 				<p>
 					The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.
 				</p>
@@ -177,11 +179,11 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 				<h2>Printouts</h2>
 				<p>All drawings on the chalkboard are included in the PDF-export.
 				</p>
-
+  
 			</section>
 			<section data-audio-text="The chalk effect is based on chalkboard by Mohamed Moustafa">
 				<h2>Credits</h2>
-				<p>
+				<p> 
 					The chalk effect is based on <a href="https://github.com/mmoustafa/Chalkboard">Chalkboard</a> by Mohamed Moustafa.
 				<p>
 			</section>
@@ -191,14 +193,14 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 				<p>Check out other plugins by clicking on &nbsp;<a href="#" onclick="RevealMenu.toggle(); return false;"><i class="fa fa-bars"></i></a>&nbsp; and then on "Plugins <i class="fa fa-external-link-alt"></i>".</p>
 				<p>Have a look at the source code & documentation on <a href="https://github.com/rajgoel/reveal.js-plugins">Github</a>.</p>
 				<a aria-label="Download rajgoel/reveal.js-plugins on GitHub" data-style="mega" href="https://github.com/rajgoel/reveal.js-plugins/archive/master.zip" class="github-button">Download</a>
-				<a aria-label="Star rajgoel/reveal.js-plugins on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/rajgoel/reveal.js-plugins#stargazers_count" data-count-href="/rajgoel/reveal.js-plugins/stargazers" data-style="mega" href="https://github.com/rajgoel/reveal.js-plugins" class="github-button">Star</a>
+				<a aria-label="Star rajgoel/reveal.js-plugins on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/rajgoel/reveal.js-plugins#stargazers_count" data-count-href="/rajgoel/reveal.js-plugins/stargazers" data-style="mega" href="https://github.com/rajgoel/reveal.js-plugins" class="github-button">Star</a>					
 			</section>
 
 		</div>
 	</div>
 
-	<script src="reveal.js/lib/js/head.min.js"></script>
-	<script src="reveal.js/js/reveal.js"></script>
+	<script src="../reveal.js/lib/js/head.min.js"></script>
+	<script src="../reveal.js/js/reveal.js"></script>
 
 	<script>
 			// Full list of configuration options available here:
@@ -220,18 +222,18 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 				        ]
 				},
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
+				transition: Reveal.getQueryHash().transition || 'default', // none/fade/slide/convex/concave/zoom
 
 				// Optional libraries used to extend on reveal.js
 				dependencies: [
-					{ src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-//					{ src: 'reveal.js-plugins/audio-slideshow/slideshow-recorder.js'},
-					{ src: 'reveal.js-plugins/audio-slideshow/audio-slideshow.js'},
-					{ src: 'reveal.js-plugins/chalkboard/chalkboard.js'},
-					{ src: 'reveal.js-plugins/menu/menu.js'},
+					{ src: '../reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+//					{ src: 'reveal.js-plugins/audio-slideshow/slideshow-recorder.js'},				
+					{ src: '../reveal.js-plugins/audio-slideshow/audio-slideshow.js'},
+					{ src: '../reveal.js-plugins/chalkboard/chalkboard.js'},
+					{ src: '../reveal.js-plugins/menu/menu.js'},
 				],
 				audio: {
 					prefix: 'chalkboard/',
