@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>A Proof</title>
+	<title>Chris Richardson</title>
 
 	<meta name="description" content="A plugin for reveal.js">
 	<meta name="author" content="Chris Richardson">
@@ -15,7 +15,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
 	<link rel="stylesheet" href="reveal.js/css/reveal.css">
-	<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+	<link rel="stylesheet" href="css/theme/matthieu-dark.css" id="theme">
 
 	<!-- Code syntax highlighting -->
 	<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
@@ -40,6 +40,10 @@
 </head>
 
 <body>
+  <div class="reveal">
+    <div class="slides">
+
+<body>
 
 	<div class="reveal">
 		<!-- Any section element inside of this container is displayed as a slide -->
@@ -51,114 +55,25 @@
 				</p>
 
 			</section>
-			<section data-audio-text="Have you ever missed the traditional classroom experience where you can quickly sketch something on a chalkboard?">
-				<h2>Hey there</h2>
+			<section>
+				<h2>Problem Statement</h2>
 				<p>
-					Have you ever missed the traditional classroom experience where you can quickly sketch something on a chalkboard?
+					We want to prove the following postulate:
 				</p>
-				<p class="fragment" data-fragment-index=0 data-audio-advance="false" data-audio-text="Just press b or click on the pencil in a square button to open and close your chalkboard. After you are done please advance to the next slide and click the play button.">
-                    <svg width="200" height="200">
-                        <circle cx="100" cy="100" r="100" fill="red"/>
-                        <text font-size="20" x="100" y="100">$ a^2 + b^2 = c^2 $</text>
-                    </svg>
-				</p>
-			</section>
-			<section data-audio-text="Drawing is easy. Just click the left or right mouse button and drag to write on or wipe the chalkboard. With the delete key you can clear the chalkboard.">
-				<h2>Easy to use</h2>
-				<ul>
-					<li> Click the left mouse button to write on the chalkboard</li>
-					<li> Click the right mouse button to wipe the chalkboard</li>
-					<li> Click the 'DEL' key to clear the chalkboard </li>
-				</ul>
-			</section>
-			<section data-audio-text="The plugin also has basic touch support.">
-				<h2>Touch support</h2>
-				<ul>
-					<li> Touch and drag to write on the chalkboard</li>
-					<li> Touch and hold, then drag to wipe the chalkboard</li>
-				</ul>
-			</section>
-			<section data-audio-text="Did you notice the pencil button?">
-				<h2>Make notes on slides</h2>
-				<p>
-					Did you notice the &nbsp;<i class="fa fa-pen"></i>&nbsp; button?
-				</p>
-				<p class="fragment" data-fragment-index=0  data-audio-advance="false" data-audio-text="By pressing c or clicking the pencil button you can start and stop the notes taking mode allowing you to write comments and notes directly on the slide. After you are done please advance to the next slide and click the play button.">
-					By pressing 'c' or clicking the button you can start and stop the notes taking mode allowing you to write comments and notes directly on the slide.
-				</p>
-				<p class="fragment" style="color:dimgray; font-size: 20px" data-fragment-index=0 data-audio-text="By pressing c or clicking the pencil button you can start and stop the notes taking mode allowing you to write comments and notes directly on the slide. After you are done please advance to the next slide and click the play button.">
-					After you are done please advance to the next slide and click the play button again.
-				</p>
-			</section>
-			<section data-audio-text="By default, a drawing cannot be edited after navigating away from the slide.">
-				<h2>Default settings</h2>
-				<p>
-					By default, a drawing cannot be edited after navigating away from the slide.
-				</p>
-				<p  class="fragment">
-					Please check out <a href="https://github.com/rajgoel/reveal.js-plugins/chalkboard">Github</a> for a documentation of the settings.
+				<p class="fragment">
+					The shortest distance between two points is a straight line.
 				</p>
 			</section>
 			<section>
-			<section data-audio-text="The plugin records all drawings and you can download them in a JSON-file by pressing d">
-				<h2>Playback</h2>
-				<p>The plugin records all drawings and you can download them in a JSON-file by pressing 'd'.
-				</p>
-				<p class="fragment">The pre-recorded drawings can be added to the slideshow for playback.
-				</p>
-			</section>
-			<section data-audio-text="If you are not an artist, you can also create a JSON-file based on an SVG image">
-				<h3>JSON-file</h3>
+				<h2>Background</h2>
 				<p>
-					If you are not an artist, you can also create a JSON-file based on an SVG image.
+					Calculus of Variations
 				</p>
-
-			</section>
-			<section data-audio-text="Here is the image that has been used to create the chalkboard drawing on the previous slide">
-				<h3>Original image</h3>
-				<img class="stretch" src="chalkboard/Manga_grayscale.svg"></img>
-				<p style="color:dimgray; font-size: 20px">
-					Source: <a href="https://commons.wikimedia.org/wiki/File:Manga_grayscale.svg">Wikimedia</a>
+				<p class="fragment">
+                    <svg width="200" height="200">
+                        <text font-size="20" x="100" y="100">$ a^2 + b^2 = c^2 $</text>
+                    </svg>
 				</p>
-
-			</section>
-			<section data-audio-text="First, the image has to be preprocessed e.g. with inkscape">
-				<h3>Preprocessing with <a href="https://inkscape.org">Inkscape</a></h3>
-				<ul>
-					<li>Remove all elements which are not lines, e.g. shadows</li>
-					<li>Convert SVG path coordinates from relative to absolute (<a href="http://stackoverflow.com/questions/6890685/is-there-a-tool-to-convert-svg-line-paths-from-absolute-to-relative">see here</a>)</li>
-					<li>Convert curves to lines (<a href="http://www.inkscapeforum.com/viewtopic.php?t=4308#p19653">see here</a>)</li>
-				</ul>
-			</section>
-			<section data-audio-text="This is the sample image after editing">
-				<h3>Edited image</h3>
-				<img class="stretch" src="chalkboard/Manga_lines.svg"></img>
-			</section>
-			<section data-audio-text="The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.">
-				<p>
-					The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.
-				</p>
-			</section>
-			</section>
-			<section data-audio-text="All drawings on the chalkboard are included in the PDF-export.">
-				<h2>Printouts</h2>
-				<p>All drawings on the chalkboard are included in the PDF-export.
-				</p>
-
-			</section>
-			<section data-audio-text="The chalk effect is based on chalkboard by Mohamed Moustafa">
-				<h2>Credits</h2>
-				<p>
-					The chalk effect is based on <a href="https://github.com/mmoustafa/Chalkboard">Chalkboard</a> by Mohamed Moustafa.
-				<p>
-			</section>
-			<section data-audio-text="You can download the plugin on github. Do not forget to check out the other plugins.">
-			<h2>The end</h2>
-
-				<p>Check out other plugins by clicking on &nbsp;<a href="#" onclick="RevealMenu.toggle(); return false;"><i class="fa fa-bars"></i></a>&nbsp; and then on "Plugins <i class="fa fa-external-link-alt"></i>".</p>
-				<p>Have a look at the source code & documentation on <a href="https://github.com/rajgoel/reveal.js-plugins">Github</a>.</p>
-				<a aria-label="Download rajgoel/reveal.js-plugins on GitHub" data-style="mega" href="https://github.com/rajgoel/reveal.js-plugins/archive/master.zip" class="github-button">Download</a>
-				<a aria-label="Star rajgoel/reveal.js-plugins on GitHub" data-count-aria-label="# stargazers on GitHub" data-count-api="/repos/rajgoel/reveal.js-plugins#stargazers_count" data-count-href="/rajgoel/reveal.js-plugins/stargazers" data-style="mega" href="https://github.com/rajgoel/reveal.js-plugins" class="github-button">Star</a>
 			</section>
 
 		</div>
