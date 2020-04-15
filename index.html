@@ -57,15 +57,10 @@
 					Have you ever missed the traditional classroom experience where you can quickly sketch something on a chalkboard?
 				</p>
 				<p class="fragment" data-fragment-index=0 data-audio-advance="false" data-audio-text="Just press b or click on the pencil in a square button to open and close your chalkboard. After you are done please advance to the next slide and click the play button.">
-					Just press 'b' or click on the &nbsp;<i class="fa fa-pen-square"></i>&nbsp; button to open and close your chalkboard.
-				</p>
-				<form name="theme" class="fragment" data-fragment-index=0 style="font-size: 20px">
-					Select appearance:
-					<input type="radio" name="theme" value="chalkboard" onclick="changeTheme(this);" checked autocomplete="off"> Chalkboard</input>
-					<input type="radio" name="theme" value="whiteboard" onclick="changeTheme(this);" autocomplete="off"> Whiteboard</input>
-				</form>
-				<p class="fragment" style="color:dimgray; font-size: 20px" data-fragment-index=0 data-audio-text="Just press b or click on the pencil in a square button to open and close your chalkboard. After you are done please advance to the next slide and click the play button.">
-					After you are done please advance to the next slide and click the play button again.
+                    <svg width="200" height="200">
+                        <circle cx="100" cy="100" r="100" fill="red"/>
+                        <text font-size="20" x="100" y="100">$ a^2 + b^2 = c^2 $</text>
+                    </svg>
 				</p>
 			</section>
 			<section data-audio-text="Drawing is easy. Just click the left or right mouse button and drag to write on or wipe the chalkboard. With the delete key you can clear the chalkboard.">
@@ -139,34 +134,6 @@
 				<h3>Edited image</h3>
 				<img class="stretch" src="chalkboard/Manga_lines.svg"></img>
 			</section>
-			<section data-audio-text="The sample image can be translated with the bash script into a JSON-file">
-				<h3>Create JSON-file with bash script</h3>
-				<pre data-prevent-swipe><code data-trim>
-grep 'd=\"M' Manga_lines.svg | sed 's/L/ /g' | sed -e 's/  */ /g'  | sed 's/d="M//g'  | sed 's/"//g' > tmp.csv
-BEGIN=4000
-JSON=`cat tmp.csv | while read LINE; do
- END=$((BEGIN + 500))
- OUTPUT=$OUTPUT'{"type":"draw","begin":'$BEGIN',"end":'$END',"curve":['
- BEGIN=$END
- prefix='{"x":'
- suffix=','
- for i in $LINE; do
-  if [ $prefix == '{"x":' ]; then
-   OUTPUT=$OUTPUT$prefix$i$suffix
-   prefix='"y":'
-   suffix='},'
-  else
-   OUTPUT=$OUTPUT$prefix$i$suffix
-   prefix='{"x":'
-   suffix=','
-  fi
- done
- echo $OUTPUT']},'
- OUTPUT=""
-done`
-END=`awk 'END {print (NR)*500+4000}' tmp.csv`
-echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"slide":{"h":6,"v":0,"f":0},"events":[{"type":"open","begin":4000},'$JSON'], "duration":'$END'}]}]' | sed 's/,]/]/g' 				</code></pre>
-			</section>
 			<section data-audio-text="The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.">
 				<p>
 					The script is just a rough hack and it is likely that you have to adapt it significantly to work for other SVG images.
@@ -214,10 +181,6 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 					transitions: false,
 					markers: true,
 					hideMissingTitles: true,
-					custom: [
-				            { title: 'Plugins', icon: '<i class="fa fa-external-link-alt"></i>', src: 'toc.html' },
-				            { title: 'About', icon: '<i class="fa fa-info"></i>', src: 'about.html' }
-				        ]
 				},
 				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 				transition: Reveal.getQueryHash().transition || 'slide', // none/fade/slide/convex/concave/zoom
@@ -232,6 +195,7 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 					{ src: 'reveal.js-plugins/audio-slideshow/audio-slideshow.js'},
 					{ src: 'reveal.js-plugins/chalkboard/chalkboard.js'},
 					{ src: 'reveal.js-plugins/menu/menu.js'},
+                    { src: 'reveal.js-plugins/mathsvg/math.js', async: true },
 				],
 				audio: {
 					prefix: 'chalkboard/',
@@ -275,7 +239,6 @@ echo '[{"width":960,"height":720,"data":[]},{"width":540,"height":720,"data":[{"
 			input.blur();
 		}
 	</script>
-<a href="https://github.com/rajgoel/reveal.js-plugins"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/82b228a3648bf44fc1163ef44c62fcc60081495e/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"></a>
 
 </body>
 </html>
