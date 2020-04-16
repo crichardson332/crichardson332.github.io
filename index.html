@@ -71,8 +71,7 @@
 </li>
 <li class="fragment"><p>Taking the total derivative of <span class="math inline">\(L(x,y,y')\)</span>, noting that <span class="math inline">\(y=f+\epsilon \eta\)</span> and <span class="math inline">\(y'=f'+\epsilon \eta'\)</span> we get</p></li>
 <li class="fragment"><span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\frac{dy}{d\epsilon} + \frac{\partial L}{\partial y'}\frac{dy'}{d\epsilon}\]</span></li>
-<li class="fragment">And because <span class="math inline">\(\frac{dy}{d\epsilon}=\eta\)</span> and <span class="math inline">\(\frac{dy'}{d\epsilon}=\eta'\)</span>, we get <span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\eta + \frac{\partial L}{\partial y'}\eta'\]</span></li>
-<li class="fragment">Plugging back into the previous result, <span class="math display">\[\int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = \int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx\]</span></li>
+<li class="fragment">And because <span class="math inline">\(\frac{dy}{d\epsilon}=\eta\)</span> and <span class="math inline">\(\frac{dy'}{d\epsilon}=\eta'\)</span>, we get <span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\eta + \frac{\partial L}{\partial y'}\eta'\]</span><span class="math display">\[\int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = \int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx = 0\]</span></li>
 </ul>
 </section>
 
@@ -81,7 +80,7 @@
 <ul>
 <li class="fragment">Using integration by parts we get <span class="math display">\[\int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx = \int_{x_1}^{x_2} \frac{\partial L}{\partial f}\eta dx + \frac{\partial L}{\partial f'}\eta \biggr\rvert_{x_1}^{x_2} - \int_{x_1}^{x_2} \eta \frac{d}{dx} \frac{\partial L}{\partial f'} dx\]</span></li>
 <li class="fragment">Because <span class="math inline">\(\eta\)</span> vanishes at the endpoints, we end up with <span class="math display">\[\int_{x_1}^{x_2} \eta \left(\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'}\right) dx = 0\]</span></li>
-<li class="fragment">According to the <em>fundamental lemma of the calclulus of variations</em>, the integrand here must be identically zero. Thus <span class="math display">\[\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>
+<li class="fragment">According to the <em>fundamental lemma of the calculus of variations</em>, the integrand here must be identically zero. Thus <span class="math display">\[\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>
 <li class="fragment">This is the <em>Euler-Lagrange Equation</em>.</li>
 </ul>
 </section>
@@ -91,7 +90,7 @@
 <ul>
 <li class="fragment">Revisiting our original problem, we want to find a function <span class="math inline">\(y(x)\)</span> that minimizes the path length between two points. In 2-D the path length is given by the functional <span class="math display">\[\int_{x_1}^{x_2} \sqrt{1+\left(\frac{dy}{dx}\right)^2} dx\]</span></li>
 <li class="fragment">The Lagrangian here does not explicitly depend on <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>. Thus the Euler-Lagrange equation reduces to <span class="math display">\[ \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>
-<li class="fragment">We can integrate both sides and get <span class="math inline">\( \frac{\partial L}{\partial f'} = c\)</span>. Thus <span class="math display">\[ \frac{\partial L}{\partial f'} = \frac{y'}{\sqrt{1+y'^2}} = c\]</span><span class="math display">\[ y' = \sqrt{\frac{c^2}{1-c^2}} = k\]</span>Because the slope of the line is constant, it is a straight line.</li>
+<li class="fragment">We can integrate both sides and get <span class="math inline">\( \frac{\partial L}{\partial f'} = c\)</span>. Thus <span class="math inline">\( \frac{\partial L}{\partial f'} = \frac{y'}{\sqrt{1+y'^2}} = c\)</span>. Solving for <span class="math inline">\(y'\)</span> we get <span class="math inline">\( y' = \sqrt{\frac{c^2}{1-c^2}} = k\)</span>. Because the slope of the line is constant, it is a straight line.</li>
 </ul>
 </section>
 
