@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="Chris Richardson">
-  <title>Why supervised learning may work</title>
+  <title>Straight Line Theorem</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -33,7 +33,7 @@
     <div class="slides">
 
 <section id="title-N">
-  <h1 class="title">A Proof of the Straight Line Theorem</h1>
+  <h1 class="title">The Straight Line Theorem</h1>
   <p class="author">Chris Richardson</p>
   <p class="date">April 15, 2020</p>
 </section>
@@ -42,266 +42,61 @@
 <h2>PROBLEM STATEMENT</h2>
 <div>
 <ul>
-<div class="theorem" name="Binary NN classifier"> Let $\calX$ be a separable metric space. Let $p(\bfx|y=0)$, $p(\bfx|y=1)$ be such that, with probability one, $\bfx$ is either a continuity point of $p(\bfx|y=0)$ and $p(\bfx|y=1)$ or a point of non-zero probability measure. Then, as $N\to\infty$, $$R(h^{\text{B}}) \leq R(h^{\text{NN}})\leq 2R(h^{\text{B}})(1-R(h^{\text{B}}))$$
-</div>
-
-<!-- <li><div class="lemma" name="Hoeffding&#39;s inequality"> -->
-<!-- <p>Let <span class="math inline">\(\{X_i\}_{i=1}^N\)</span> be i.i.d. real-valued zero-mean random variables such that <span class="math inline">\(X_i\in[a_i;b_i]\)</span> with <span class="math inline">\(a_i&lt;b_i\)</span>. Then for all <span class="math inline">\(\epsilon&gt;0\)</span> <span class="math display">\[\P{\abs{\frac{1}{N}\sum_{i=1}^N X_i}\geq\epsilon}\leq 2\exp\left(-\frac{2N^2\epsilon^2}{\sum_{i=1}^N(b_i-a_i)^2}\right).\]</span></p> -->
-<!-- </div></li> -->
-<li>In our learning problem <span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h_j)-{R}(h_j)}\geq\epsilon}\leq 2\exp(-2N\epsilon^2)\]</span></li>
-<li><span class="math display">\[ \forall\epsilon&gt;0\quad\P{\abs{\widehat{R}_N(h^*)-{R}(h^*)}\geq\epsilon}\leq 2M\exp(-2N\epsilon^2)\]</span></li>
-<li>We can now choose <span class="math inline">\(N\geq \lceil\frac{1}{2\epsilon^2}\left(\ln \frac{2M}{\delta}\right)\rceil\)</span></li>
-<li><span class="math inline">\(M\)</span> can be quite large (almost exponential in <span class="math inline">\(N\)</span>) and, with enough data, we can generalize <span class="math inline">\(h^*\)</span>.</li>
-<li>How about learning <span class="math inline">\(h^{\sharp}\eqdef\argmin_{h\in\calH}R(h)\)</span>?</li>
-</ul>
-</div>
-</section>
-<section id="learning-can-work" class="slide level2">
-<h2>Learning can work!</h2>
-<ul>
-<li class="fragment"><div class="lemma">
-<p>If <span class="math inline">\(\forall j\in\calH\,\abs{\widehat{R}_N(h_j)-{R}(h_j)}\leq\epsilon\)</span> then <span class="math inline">\(\abs{R(h^*)-{R}(h^\sharp)}\leq 2\epsilon\)</span>.</p>
+<li class="fragment"><div class="theorem">
+<p>The shortest path <span class="math inline">\(f(x)\)</span> passing between two points <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\) is a straight line.</span></p>
 </div></li>
-<li class="fragment">How do we make <span class="math inline">\(R(h^\sharp)\)</span> small?
-<ul>
-<li class="fragment">Need bigger hypothesis class <span class="math inline">\(\calH\)</span>! (could we take <span class="math inline">\(M\to\infty\)</span>?)</li>
-<li class="fragment">Fundamental trade-off of learning</li>
-</ul></li>
-</ul>
-<div class="fragment" style="display: inline-block; margin-left: auto; margin-right: auto;">
-<figure class style="height:450px; margin-left:auto; display: block;">
-<img class = "plain" style=""  src="ece6254-img/learningtradeoff.jpg" alt="Image">
-</figure>
-</div>
-</section>
-<section id="probably-approximately-correct-learnability" class="slide level2">
-<h2>Probably Approximately Correct Learnability</h2>
-<ul>
-<li class="fragment"><div class="definition" name="PAC learnability">
-A hypothesis set <span class="math inline">\(\calH\)</span> is (agnostic) PAC learnable if there exists a function <span class="math inline">\(N_\calH:]0;1[^2\to\bbN\)</span> and a learning algorithm such that:
-<ul>
-<li class="fragment">for very <span class="math inline">\(\epsilon,\delta\in]0;1[\)</span>,</li>
-<li class="fragment">for every <span class="math inline">\(P_\bfx\)</span>, <span class="math inline">\(P_{y|\bfx}\)</span>,</li>
-<li class="fragment">when running the algorithm on at least <span class="math inline">\(N_\calH(\epsilon,\delta)\)</span> i.i.d. examples, the algorithm returns a hypothesis <span class="math inline">\(h\in\calH\)</span> such that <span class="math display">\[\P[\bfx y]{\abs{{R}(h)-R(h^\sharp)}\leq\epsilon}\geq 1-\delta\]</span></li>
-</ul>
-</div></li>
-<li class="fragment"><p>The function <span class="math inline">\(N_{\calH}(\epsilon,\delta)\)</span> is called <em>sample complexity</em></p></li>
-<li class="fragment"><p>We have effectively already proved the following result</p></li>
-<li class="fragment"><div class="proposition">
-<p>A finite hypothesis set <span class="math inline">\(\calH\)</span> is PAC learnable with the Empirical Risk Minimization algorithm and with sample complexity <span class="math display">\[N_\calH(\epsilon,\delta)={\lceil{\frac{2\ln(2\card{\calH}/\delta)}{\epsilon^2}}\rceil}\]</span></p>
+<li class="fragment">To prove the theorem, we will use a field of mathematical analysis called <em>calculus of variations</em> developed by Bernoulli, Euler, and Lagrange in the 18th century.</li>
+<li class="fragment">This field is concerned with finding extrema (maxima and minima) of <em>functionals</em>, which can be thought of as <em>functions of functions</em>.</li>
+<li class="fragment"><div class="example">
+<p>Given a function <span class="math inline">\(f(x)\)</span>, the integral <span class="math inline">\(\int f(x) dx\)</span> is a <em>functional</em> of <span class="math inline">\(f(x)\)</span>.</p>
 </div></li>
 </ul>
-</section>
-<section id="what-is-a-good-hypothesis-set" class="slide level2">
-<h2>What is a good hypothesis set?</h2>
-<div class="fragment" style="display: inline-block; margin-left: auto; margin-right: auto;">
-<figure class style="height:450px; margin-left:auto; display: block;">
-<img class = "plain" style=""  src="ece6254-img/learningtradeoff.jpg" alt="Image">
-</figure>
 </div>
+</section>
+
+<section id="calculus-of-variations" class="slide level2">
+<h2>Background: Calculus of Variations</h2>
 <ul>
-<li class="fragment"><p>Ideally we want <span class="math inline">\(\card{\calH}\)</span> small so that <span class="math inline">\(R(h^*)\approx R(h^\sharp)\)</span> and get lucky so that <span class="math inline">\(R(h^*)\approx 0\)</span></p></li>
-<li class="fragment">In general this is <em>not</em> possible
-<ul>
-<li class="fragment">Remember, we usually have to learn <span class="math inline">\(P_{y|\bfx}\)</span>, not a function <span class="math inline">\(f\)</span></li>
-</ul></li>
-<li class="fragment"><em>Questions</em>
-<ul>
-<li class="fragment">What is the optimal binary classification hypothesis class?</li>
-<li class="fragment">How small can <span class="math inline">\(R(h^*)\)</span> be?</li>
-</ul></li>
+<li class="fragment">Consider the functional: <span class="math display">\[ J(y) = \int_{x_1}^{x_2} L(x,y(x),y'(x))dx \]</span></li>
+<li class="fragment">The goal is to minimize <span class="math inline">\(J(y)\)</span>. Let <span class="math inline">\(f = \underset{y}{\mathrm{argmin\,}} J(y)\)</span>. Then we can say that for any arbitrary smooth <em>variation</em> <span class="math inline">\(\eta(x)\)</span> vanishing at the endpoints, <span class="math display">\[ J(f) \leq J(f+\epsilon \eta) \]</span> for some <span class="math inline">\(\epsilon \in \bbR\)</span>. Now we define a function of <span class="math inline">\(\epsilon\)</span> <span class="math display">\[ \Phi(\epsilon) \overset{\Delta}{=} J(f+\epsilon \eta) \]</span></li>
+<li class="fragment">This function is minimized at <span class="math inline">\(\epsilon=0\)</span>. Because it's a scalar function we can set the derivative to 0:</li>
+<li class="fragment"><span class="math display">\[ \frac{d \Phi(0)}{d\epsilon}=0 \]</span></li>
 </ul>
 </section>
-<section id="supervised-learning-model" class="slide level2">
-<h2>Supervised learning model</h2>
-<p>We revisit the supervised learning setup (<em>slight</em> change in notation)</p>
-<ol type="1">
-<li class="fragment">Dataset <span class="math inline">\(\calD\eqdef\{(X_1,Y_1),\cdots,(X_N,Y_N)\}\)</span>
+
+<section id="calculus-of-variations2" class="slide level2">
+<h2>Background: Calculus of Variations</h2>
 <ul>
-<li class="fragment"><span class="math inline">\(\{X_i\}_{i=1}^N\)</span> <em>drawn i.i.d. from unknown</em> <span class="math inline">\(P_{X}\)</span> on <span class="math inline">\(\calX=\bbR^d\)</span></li>
-<li class="fragment"><span class="math inline">\(\{Y_i\}_{i=1}^N\)</span> labels with <span class="math inline">\(\calY=\{0,1,\cdots,K-1\}\)</span> (multiclass classification)</li>
-</ul></li>
-<li class="fragment"><p>Unknown <span class="math inline">\(P_{Y|X}\)</span></p></li>
-<li class="fragment"><p>Binary loss function <span class="math inline">\(\ell:\calY\times\calY\rightarrow\bbR^+:(y_1,y_2)\mapsto \indic{y_1\neq y_2}\)</span></p></li>
-</ol>
-<ul>
-<li class="fragment"><p>The risk of a classifier <span class="math inline">\(h\)</span> is <span class="math display">\[
-R(h)\eqdef\E[XY]{\indic{h(X)\neq Y}} = \P[X Y]{h(X)\neq Y}
-\]</span></p></li>
-<li class="fragment"><p>We will not worry about <span class="math inline">\(\calH\)</span> directly, but rather about about <span class="math inline">\(R(\hat{h}_N)\)</span> for some <span class="math inline">\(\hat{h}_N\)</span> that we will estimate from the data</p></li>
+<li class="fragment">Now we look at the total derivative<span class="math display">\[\frac{d \Phi}{d\epsilon} = \int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = 0\]</span></li>
+</li>
+<li class="fragment"><p>Taking the total derivative of <span class="math inline">\(L(x,y,y')\)</span>, noting that <span class="math inline">\(y=f+\epsilon \eta\)</span> and <span class="math inline">\(y'=f'+\epsilon \eta'\)</span> we get</p></li>
+<li class="fragment"><span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\frac{dy}{d\epsilon} + \frac{\partial L}{\partial y'}\frac{dy'}{d\epsilon}\]</span></li>
+<li class="fragment">And because <span class="math inline">\(\frac{dy}{d\epsilon}=\eta\)</span> and <span class="math inline">\(\frac{dy'}{d\epsilon}=\eta'\)</span>, we get <span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\eta + \frac{\partial L}{\partial y'}\eta'\]</span></li>
+<li class="fragment">Plugging back into the previous result, <span class="math display">\[\int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = \int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx\]</span></li>
 </ul>
 </section>
-<section id="bayes-classifier" class="slide level2">
-<h2>Bayes classifier</h2>
+
+<section id="calculus-of-variations3" class="slide level2">
+<h2>Background: Calculus of Variations</h2>
 <ul>
-<li class="fragment">What is the <em>best</em> risk (smallest) that we can achieve?
-<ul>
-<li class="fragment">Assume that we actually know <span class="math inline">\(P_{X}\)</span> and <span class="math inline">\(P_{Y|X}\)</span></li>
-<li class="fragment">Denote the <em>a posteriori</em> class probabilities of <span class="math inline">\(\bfx\in\calX\)</span> by <span class="math display">\[ \eta_k(\bfx) \eqdef \P{Y=k|X=\bfx}\]</span></li>
-<li class="fragment">Denote the <em>a priori</em> class probabilities by <span class="math display">\[\pi_k\eqdef \P{Y=k}\]</span></li>
-</ul></li>
-<li class="fragment"><div class="lemma" name="Bayes classifier">
-<p>The classifier <span class="math inline">\(h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \eta_k(\bfx)\)</span> is optimal, i.e., for <em>any</em> classifier <span class="math inline">\(h\)</span>, we have <span class="math inline">\(R(h^\text{B})\leq R(h)\)</span>. <span class="math display">\[
-R(h^{\text{B}}) = \E[X]{1-\max_k \eta_k(X)}
-\]</span></p>
-</div></li>
-<li class="fragment">Terminology
-<ul>
-<li class="fragment"><span class="math inline">\(h^B\)</span> is called the <em>Bayes classifier</em></li>
-<li class="fragment"><span class="math inline">\(R_B\eqdef R(h^B)\)</span> is called the <em>Bayes risk</em></li>
-</ul></li>
+<li class="fragment">Using integration by parts we get <span class="math display">\[\int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx = \int_{x_1}^{x_2} \frac{\partial L}{\partial f}\eta dx + \frac{\partial L}{\partial f'}\eta \biggr\rvert_{x_1}^{x_2} - \int_{x_1}^{x_2} \eta \frac{d}{dx} \frac{\partial L}{\partial f'} dx\]</span></li>
+<li class="fragment">Because <span class="math inline">\(\eta\)</span> vanishes at the endpoints, we end up with <span class="math display">\[\int_{x_1}^{x_2} \eta \left(\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'}\right) dx = 0\]</span></li>
+<li class="fragment">Because <span class="math inline">\(\eta\)</span> vanishes at the endpoints, we end up with <span class="math display">\[\int_{x_1}^{x_2} \eta \left(\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'}\right) dx = 0\]</span></li>
+<li class="fragment">According to the <em>fundamental lemma of the calclulus of variations</em>, the integrand here must be identically zero. Thus <span class="math display">\[\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>
+<li class="fragment">This is the <em>Euler-Lagrange Equation</em>.</li>
 </ul>
-<!--
-## Other forms of the Bayes classifier
-
-- $h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \eta_k(\bfx)$
-
-- $h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} \pi_k p_{X|Y}(\bfx|k)$
-
-- For $K=2$ (binary classification): log-likelihood ratio test
-  $$
-    \log\frac{p_{X|Y}(\bfx|1)}{p_{X|Y}(\bfx|0)} \gtrless \log \frac{\pi_0}{\pi_1}
-  $$
-
-- If all classes are equally likely $\pi_0=\pi_1=\cdots=\pi_{K-1}$
-  $$
-    h^\text{B}(\bfx)\eqdef\argmax_{k\in[0;K-1]} p_{X|Y}(\bfx|k)
-  $$
-
-- <div class="example" name="Bayes classifier"> Assume $X|Y=0\sim\calN(0,1)$ and $X|Y=1\sim\calN(1,1)$.
-  The Bayes risk for $\pi_0=\pi_1$ is $R(h^\text{B})=\Phi(-\frac{1}{2})$ with $\Phi\eqdef\text{Normal CDF}$
-</div>
-
-- In practice we do *not* now $P_X$ and $P_{Y|X}$
-  - *Plugin methods*: use the *data* to learn the distributions and plug result in Bayes classifier
-
-
-## Other loss functions
-
-- We have focused on the risk $\P{h(X)\neq Y}$ obtained for a binary loss function $\indic{h(X)\neq Y}$
-
-- There are many situations in which this is not appropriate
-  - Cost sensitive classification: false alarm and  missed detection may not be equivalent
-  $$
-     c_0\indic{h(X)\neq 0\text{ and }Y=0} + c_1 \indic{h(X)\neq 1\text{ and }Y=1}
-  $$
-  - Unblanced data set: the probability of the largest class will dominate
-
-- More to explore in the next homework!
-
-## Nearest neighbor classifier
-
-- Back to our training dataset $\calD\eqdef\{(\bfx_1,y_1),\cdots,(\bfx_N,y_N)\}$
-
-- The *nearest-neighbor* (NN) classifier is $h^{\text{NN}}(\bfx)\eqdef y_{\text{NN}(\bfx)}$ where $\text{NN}(\bfx)\eqdef \argmin_i \norm{\bfx_i-\bfx}$
-
-- Risk of NN classifier conditioned on $\bfx$ and $\bfx_{\text{NN}(\bfx)}$
-  $$
-    R_{\text{NN}}(\bfx,\bfx_{\text{NN}(\bfx)}) = \sum_{k}\eta_k(\bfx_{\text{NN}(\bfx)})(1-\eta_k(\bfx))= \sum_{k}\eta_k(\bfx)(1-\eta_k(\bfx_{\text{NN}(\bfx)})).
-  $$
-  - How well does the average risk $R_{\text{NN}}=R(h^{\text{NN}})$ compare to the Bayes risk for large $N$?
-
-- <div class="lemma"> Let $\bfx$, $\{\bfx_i\}_{i=1}^N$ be i.i.d. $\sim P_{\bfx}$ in a separable metric space $\calX$. Let
-  $\bfx_{\text{NN}(\bfx)}$ be the nearest neighbor of $\bfx$. Then $\bfx_{\text{NN}(\bfx)} \to \bfx$ with probability one as $N\to\infty$
-</div>
-
-- <div class="theorem" name="Binary NN classifier"> Let $\calX$ be a separable metric space. Let $p(\bfx|y=0)$, $p(\bfx|y=1)$ be such that, with probability one, $\bfx$ is either a continuity point of $p(\bfx|y=0)$ and $p(\bfx|y=1)$ or a point of non-zero probability measure. Then, as $N\to\infty$, $$R(h^{\text{B}}) \leq R(h^{\text{NN}})\leq 2R(h^{\text{B}})(1-R(h^{\text{B}}))$$
-</div>
-
-## K Nearest neighbor classifier
-
-- Can drive the risk of the NN classifier to the Bayes risk by *increasing* the size of the neighborhood
-  - Assign label to $\bfx$ by taking majority vote among $K$ nearest neighbors $h^\text{$K$-NN}$
-  $$\lim_{N\to\infty}\E{R(h^{\text{$K$-NN}})}\leq \left(1+\sqrt{\frac{2}{K}}\right)R(h^{\text{B}})$$
-
-- <div class="definition"> Let $\hat{h}_N$ be a classifier learned from a set of $N$ data points. The classifier  $\hat{h}_N$ is *consistent* if $\E{R(\hat{h}_N)}\to R_B$ as $N\to\infty$.
-</div>
-
-- <div class="theorem" name="Stone's Theorem"> If $N\to\infty$, $K\to\infty$, $K/N\to 0$, then $h^{\text{$K$-NN}}$ is consistent
-</div>
-
-- Choosing $K$ is a problem of *model selection*
-  - Do *not* choose $K$ by minimizing the empirical risk on training: $$\widehat{R}_N(h^{\text{$1$-NN}}) = \frac{1}{N}\sum_{i=1}^N\indic{h_1(\bfx_i)=y_i}=0$$
-  - Need to rely on estimates from model selection techniques (more later!)
-
-
-## K Nearest neighbor classifier
-
-- Given enough data, a $K$-NN classifier will do just as well as pretty much any other method
-
-- The number of samples $N$ can be huge (especially in high-dimension)
-
-- The choice of $K$ matters a lot, model selection is important
-
-- Finding the nearest neighbors out of a millions of datapoints is still computatinally hard
-  -  $K$-d trees help, but still expensive in high dimension when $N\approx d$
-
-- We will discuss other classifiers that make *more assumptions* about the underlying data
-
-## Plugin methods
-
-- The Bayes classifier requires the knowledge of $P_X$ and $P_{Y|X}$
-
-- We can learn $P_X$ and $P_{Y|X}$ from the data itself and *plug* the result into the Bayes classifier
-
-- The Bayes classifier only requires $P_{Y|X}$
-  - *Generative classifier*: learn $P_X$ and $P_{Y|X}$ (can compute $P_{X|Y}$)
-  - *Discriminative classifier*: learn $P_{Y|X}$ directly
-
-- Models can be of two types
-  - *Parametric*: strong assumption about underlying distribution (e.g., Gaussian, Multinomial, etc.)
-  - *Non-Parametric*: no assumption about form of underlying distribution
-
-- All possible combinations are possible
-
-- What are $K$-NN classifiers?
-https://stats.stackexchange.com/questions/105979/is-knn-a-discriminative-learning-algorithm
-
-## Naive Bayes
-
-- Consider $\bfx={[x_1,\cdots,x_d]}^\intercal\in\bbR^d$ (random) feature vector and $y$ the label
-  - *Naive asssumption:* Given $y$, the features $\{x_i\}_{i=1}^d$ of $\bfx$ are *independent*, i.e.,  $P_{\bfx|y} = \prod_{i=1}^d P_{x_i|y}$
-  - Main benefit: only need univariate densities $P_{x_i|y}$, combine discrete/continous features
-
-- *Procedure*
-  - Estimate a priori class probabilities: $\pi_k$ for $0\leq k\leq K-1$
-  - Esimate class conditional densities $p_{x_i|y}(x|k)$ for $1\leq i\leq d$ and $0\leq k\leq K-1$
-
-- <div class="lemma"> The maximum likelihood estimate of $\pi_k$ is $\hat{\pi}_k = \frac{N_k}{N}$ where $N_k\eqdef \card{\{y_i:y_i=k\}}$
-</div>
-
-- What about $P_{\bfx|y}$?
-  - Continuous features: often Gaussian, use ML estimate
-  - Discrete (categorical) features: often Multinomial, use ML estimate
-
-## Naive Bayes (ct'd)
-
-- Assume $j$th feature $x_j$ takes $J$ distinct values $\{0,\dots,J-1\}$ <!--multinomial model for $P_{x_j|y}$
-
-- <div class="lemma"> The maximum likelihood estimate of $P_{x_j|y}(\ell|k)$ is $\widehat{P}_{x_j|y}(\ell|k) = \frac{N^{(j)}_{\ell,k}}{N_k}$ where $N^{(j)}_{\ell,k}\eqdef \card{\{\bfx:y=k\text{ and } x_j=\ell\}}$
-</div>
-
-- The naive bayes estimator is $h^{\text{NB}}(\bfx)=\argmax_{k} \hat{\pi}_k\prod_{j=1}^d \widehat{P}_{x_j|y}(x_j|k)$
-
-- **Illustration:** Gaussian case
-
-## Naive Bayes and Bag of Words
-
-- Classification of documents into categories (politics, sports, etc.)
-  - Document as vector $\bfx={[x_1,\cdots,x_d]}^\intercal$ with $x_j$ the *number* of occurences of word $j$ in document
-  - Model documents of length $n$ and assume words are distributed among the $d$ words independently at random (multinonial distribution)
-
-- Estimate parameters
-  - Compute the ML estimate of the document classes $\hat{\pi}_k = \frac{N_k}{N}$
-  - Compute the ML estimate of the probability that word $j$ occurs in class $k$ across all documents: $$\hat{\mu}_{j,k}=\frac{\sum_{\ell}\ell N^{(j)}_{\ell,k}}{\sum_{j=1}^d\sum_{\ell}\ell N^{(j)}_{\ell,k}}$$
-
-- Run classifier: $\hat{h}^{\text{NB}}=\argmax_{k}\hat{\pi}_k\prod_{j=1}^d\left(\hat{\mu}_{j,k}\right)^{x_j}$
-
-- Weakness of approach: some words may not show up at *training* but show up at *testing*
-    - Use *Laplace smoothing* $$\hat{\mu}_{j,k}=\frac{1+\sum_{\ell}\ell N^{(j)}_{\ell,k}}{d+\sum_{j=1}^d\sum_{\ell}\ell N^{(j)}_{\ell,k}}$$
--->
 </section>
-    </div>
+
+<section id="path-length" class="slide level2">
+<h2>Original Problem: Path Length</h2>
+<ul>
+<li class="fragment">Revisiting our original problem, we want to find a function <span class="math inline">\(y(x)\)</span> that minimizes the path length between two points. In 2-D the path length is given by the functional <span class="math display">\[\int_{x_1}^{x_2} \sqrt{1+\left(\frac{dy}{dx}\right)^2} dx\]</span></li>
+<li class="fragment">The Lagrangian here does not explicitly depend on <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>. Thus the Euler-Lagrange equation reduces to <span class="math display">\[ \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>
+<li class="fragment">We can integrate both sides and get <span class="math inline">\( \frac{\partial L}{\partial f'} = c\)</span>. Thus <span class="math display">\[ \frac{\partial L}{\partial f'} = \frac{y'}{\sqrt{1+y'^2}} = c\]</span><span class="math display">\[ y' = \sqrt{\frac{c^2}{1-c^2}} = k\]</span>Because the slope of the line is constant, it is a straight line.</li>
+</ul>
+</section>
+
+</div>
   </div>
 
   <script src="reveal.js/lib/js/head.min.js"></script>
