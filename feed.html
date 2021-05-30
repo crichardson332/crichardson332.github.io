@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2021-05-11T11:27:26-04:00</updated><id>/feed.xml</id><title type="html">Information Bytes</title><subtitle>Matthieu Bloch&lt;br/&gt; School of Electrical and Computer Engineering&lt;br/&gt;Georgia Institute of Technology</subtitle><author><name>Matthieu Bloch</name></author><entry><title type="html">Correction to “Covert Communication Over Noisy Channels”</title><link href="/2020/08/10/errata.html" rel="alternate" type="text/html" title="Correction to &quot;Covert Communication Over Noisy Channels&quot;" /><published>2020-08-10T00:00:00-04:00</published><updated>2020-08-10T00:00:00-04:00</updated><id>/2020/08/10/errata</id><content type="html" xml:base="/2020/08/10/errata.html">&lt;p&gt;This is a small correction to an erroneous claim in &lt;a href=&quot;#Bloch2015b&quot;&gt;(Bloch, 2016)&lt;/a&gt;. Many thanks to &lt;a href=&quot;https://bloch.ece.gatech.edu/members/meng-che.html&quot;&gt;Meng-Che Chang&lt;/a&gt; for pointing out the error.&lt;/p&gt;
+
+&lt;h3 id=&quot;erroneous-statement&quot;&gt;Erroneous statement&lt;/h3&gt;
+
+&lt;p&gt;The erroneous statement concerns the scaling allowed for $\omega_n$ in Theorem 1 and Theorem 2. Therein, I wrote that $\omega_n\in o(1)\cap \omega(\frac{1}{\sqrt{n}})$, which effectively says that $\omega_n$ vanishes for large $n$ but does not decay too fast. Unfortunately, requiring a decay slower than $\frac{1}{\sqrt{n}}$ is not quite enough because I later on require quantities of the form $n\exp(-\omega_n\sqrt{n})$ to vanish, see, e.g, Eq. (41) and Eq. (79).&lt;/p&gt;
+
+&lt;h3 id=&quot;fixing-the-error&quot;&gt;Fixing the error&lt;/h3&gt;
+
+&lt;p&gt;This error can be corrected by requiring $\omega_n\in o(1)\cap \omega(\frac{\log(n^{1+\gamma})}{\sqrt{n}})$ for any $\gamma&amp;gt;0$.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;span id=&quot;Bloch2015b&quot;&gt;M. R. Bloch, “Covert Communication over Noisy Channels: A Resolvability Perspective,” &lt;i&gt;IEEE Transactions on Information Theory&lt;/i&gt;, vol. 62, no. 5, pp. 2334–2354, May 2016.&lt;/span&gt;
+&lt;br /&gt;
+
+&lt;a href=&quot;http://dx.doi.org/10.1109/TIT.2016.2530089&quot; class=&quot;btn btn-tiny&quot;&gt;DOI&lt;/a&gt;
+
+
+&lt;a href=&quot;http://arxiv.org/abs/1503.08778&quot; class=&quot;btn btn-tiny&quot;&gt;arXiv&lt;/a&gt;
+
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Bloch2015b-abstract&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Bloch2015b-abstract&quot;&gt;Abstract&lt;/a&gt;
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Bloch2015b-bibtex&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Bloch2015b-bibtex&quot;&gt;BibTeX&lt;/a&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Bloch2015b-abstract&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body tinytext&quot;&gt;
+        We consider the situation in which a transmitter attempts to communicate reliably over a discrete memoryless channel, while simultaneously ensuring covertness (low probability of detection) with respect to a warden, who observes the signals through another discrete memoryless channel. We develop a coding scheme based on the principle of channel resolvability, which generalizes and extends prior work in several directions. First, it shows that irrespective of the quality of the channels, it is possible to communicate on the order of  \sqrt n reliable and covert bits over  n channel uses if the transmitter and the receiver share on the order of  \sqrt n key bits. This improves upon earlier results requiring on the order of  \sqrt n\log n key bits. Second, it proves that if the receiver’s channel is better than the warden’s channel in a sense that we make precise, it is possible to communicate on the order of  \sqrt n reliable and covert bits over  n channel uses without a secret key. This generalizes earlier results established for binary symmetric channels. We also identify the fundamental limits of covert and secret communications in terms of the optimal asymptotic scaling of the message size and key size, and we extend the analysis to Gaussian channels. The main technical problem that we address is how to develop concentration inequalities for low-weight sequences. The crux of our approach is to define suitably modified typical sets that are amenable to concentration inequalities.t
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Bloch2015b-bibtex&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body&quot;&gt;
+        &lt;pre&gt;@article{Bloch2015b,
+  author = {Bloch, Matthieu R.},
+  journal = {IEEE Transactions on Information Theory},
+  title = {Covert Communication over Noisy Channels: A Resolvability Perspective},
+  year = {2016},
+  issn = {0018-9448},
+  month = may,
+  number = {5},
+  pages = {2334-2354},
+  volume = {62},
+  creationdate = {2015-03-31T00:00:00},
+  doi = {10.1109/TIT.2016.2530089},
+  eprint = {1503.08778},
+  file = {:2016-Bloch-IEEETransIT.pdf:PDF},
+  groups = {Steganography and covert communications},
+  keywords = {AWGN channels;Encoding;Memoryless systems;Noise measurement;Reliability theory;Covert communications;Shannon theory;low probability of detection;physical-layer security},
+  owner = {mattbloch}
+}
+&lt;/pre&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;/li&gt;&lt;/ol&gt;</content><author><name>Matthieu R Bloch</name></author><category term="errata" /><summary type="html">This is a small correction to an erroneous claim in (Bloch, 2016). Many thanks to Meng-Che Chang for pointing out the error.</summary></entry><entry><title type="html">Georgia COVID-19 Data</title><link href="/2020/04/21/georgia-covid-data.html" rel="alternate" type="text/html" title="Georgia COVID-19 Data" /><published>2020-04-21T00:00:00-04:00</published><updated>2020-04-21T00:00:00-04:00</updated><id>/2020/04/21/georgia-covid-data</id><content type="html" xml:base="/2020/04/21/georgia-covid-data.html">The Georgia Department of Public Health provides a daily status report [here](https://dph.georgia.gov/covid-19-daily-status-report) to track the COVID-19 spread. This now does a good job providing lots of information but it was critically lacking longitudinal data to visualize what is happening over time when it was released. I'm still updating this page although their page has much more complete information.
+
+I wrote a python script to scrape the website and load the data to visualize it a bit more. The data is the one provided by the Department of Public Health and suffers from the same limitations. I am also not an epidemiologist so I will refrain from extrapolating anything.
+
+(**Update:** GDPH changed their formatting and I was unable to retrieve all of the data on 3/27/20)
+
+# Case and death counts
+
+The following plot shows the number of reported detected cases and deaths.
+
+&lt;center&gt;
+{% include_relative covid19-data/CaseData.html %}
+&lt;/center&gt;
+
+# Testing data
+
+The following plots shows the number of tests performed and the number of positive hits. There are two series of tests going on, one by the Georgia Public Health Laboratory (GPHL), one by a commercial lab. The commercial lab is testing at a bigger scale.
+
+&lt;center&gt;
+{% include_relative covid19-data/Testing.html %}
+&lt;/center&gt;
+
+What is perhaps a bit surprising is that the fraction of positive test is not the same for the commercial lab and GPHL. It is not clear to me what factors could explain this. In any case these numbers are crucially missing two important factors: the false positive rate and the false negative rate of the tests.
+
+&lt;center&gt;
+{% include_relative covid19-data/PositiveRate.html %}
+&lt;/center&gt;
+
+&lt;!--# Data by county--&gt;</content><author><name>Matthieu R Bloch</name></author><category term="analytics" /><summary type="html">The Georgia Department of Public Health provides a daily status report here to track the COVID-19 spread. This now does a good job providing lots of information but it was critically lacking longitudinal data to visualize what is happening over time when it was released. I’m still updating this page although their page has much more complete information.</summary></entry><entry><title type="html">Fetching BibTeX entry from DOI</title><link href="/2020/04/08/bibtex-from-doi.html" rel="alternate" type="text/html" title="Fetching BibTeX entry from DOI" /><published>2020-04-08T00:00:00-04:00</published><updated>2020-04-08T00:00:00-04:00</updated><id>/2020/04/08/bibtex-from-doi</id><content type="html" xml:base="/2020/04/08/bibtex-from-doi.html">This is another of my hacks to quickly add references to my BibTeX files using Alfred.
+
+# Zotero translate server
+
+I am not a fan of Mendeley, Zotero, and other online tools to maintain a bibliography. I am a bit old school and I prefer to keep my own clean bib file and using [JabRef](https://www.jabref.org) to navigate it. I started using JabRef when it was in version 1.3, and it's stood the test of time.
+
+All that said, Zotero provides a pretty neat server at [zbib.org](https://zbib.org) to quickly get BibTeX from a doi or a title. They also provide a [translate server](https://github.com/zotero/translation-server) that you can run locally on your machine to query.
+
+Installing the Zotero translate server is pretty straightforward
+
+```bash
+git clone --recurse-submodules https://github.com/zotero/translation-server
+cd translation-server
+npm install
+npm start
+```
+
+# Linking to Alfred
+
+Once your server is running, you can use [Alfred](https://www.alfredapp.com) to access it easily. My workflow is a simple wrapper around the following bash script, which uses the DOI to return a formatted BibTeX entry.
+
+```bash
+JsonOutput=`curl -d $1 -H 'Content-Type: text/plain' http://127.0.0.1:1969/search`
+BibTeXOutput=`curl -d &quot;$JsonOutput&quot; -H 'Content-Type: application/json' 'http://127.0.0.1:1969/export?format=bibtex'`
+echo -n $BibTeXOutput
+```
+
+The proof is again in the pudding.
+
+&lt;img class = &quot;plain&quot; style='height: 100%; width: 100%; object-fit: contain' src=&quot;/img/posts/DemoAlfredDOI.gif&quot; alt=&quot;Image&quot;&gt;</content><author><name>Matthieu R Bloch</name></author><category term="tools,alfred,bibtex" /><summary type="html">This is another of my hacks to quickly add references to my BibTeX files using Alfred.</summary></entry><entry><title type="html">Inserting references in plaintext documents</title><link href="/2020/04/06/been-done-many-times.html" rel="alternate" type="text/html" title="Inserting references in plaintext documents" /><published>2020-04-06T00:00:00-04:00</published><updated>2020-04-06T00:00:00-04:00</updated><id>/2020/04/06/been-done-many-times</id><content type="html" xml:base="/2020/04/06/been-done-many-times.html"># Does this feel familiar? 
+
+&quot;The paper builds very much on [??], the extension [...] is conceptually a straightforward extension which has been done before several times [..]&quot;. 
+
+I have stopped counting the number of times I've received reviews that claim our work has been done many times before, and yet no reference is provided. That's not to say reviewers don't have a point as I'm sure we overlooked some references to related work that we should have cited; however, such comments without references are not only a source of frustration but they are also, in my opinion, a bit on the dishonest side of academic behavior. 
+
+That being said, it would be too easy to blame this on the reviewer laziness and I think this is just a symptom of a bigger problem. In fact, although we spend countless hours writing papers and citing others, either through BibTeX or Endnote, we are severely lacking simple tools to quickly cite works in plain text when we fill in forms online or just write emails.
+
+# Alfred and Python to the rescue
+
+I have become a big fan of Alfred for a while, which is nothing but a launch bar that puts spotlight on steroids. There are alternatives for other operating systems, although I haven't tested them, e.g. [Ubuntu](https://medium.com/curiouscaloo/macos-to-ubuntu-part1-alfred-replacement-7864b4d26397). I have modified a workflow found [here](https://deanishe.net/alfred-workflows/bibtex-search.alfredworkflow) to quickly insert a reference from my BibTeX file to a technical paper in plain text. The workflow uses regexp to quickly parse a BibTeX file and allows you to quickly identify a reference and to paste it in any document. My only modification to the original workflow has been to add a few regular expression and to change the formatting of the output to suit my needs bit better.
+
+The proof is in the pudding, see below!
+
+&lt;img class = &quot;plain&quot; style='height: 100%; width: 100%; object-fit: contain' src=&quot;/img/posts/DemoAlfredBibTeX.gif&quot; alt=&quot;Image&quot;&gt;
+
+
+My modified code is provided below.
+```python
+#!/usr/bin/env python2
+# encoding: utf-8
+#
+# Copyright (c) 2018 Dean Jackson &lt;deanishe@deanishe.net&gt;
+#
+# MIT Licence. See http://opensource.org/licenses/MIT
+#
+# Created on 2018-06-12
+#
+
+&quot;&quot;&quot;Extract BibTeX citations and show them in Alfred.&quot;&quot;&quot;
+
+from __future__ import print_function, absolute_import
+
+from collections import namedtuple
+import json
+import os
+import re
+import sys
+
+# .bib file to read is specified in workflow's configuration sheet
+BIBFILE = os.path.expanduser(os.getenv('BIBFILE', ''))
+ICON_WARNING = ('/System/Library/CoreServices/CoreTypes.bundle/Contents/'
+                'Resources/AlertCautionIcon.icns')
+    
+match_key = re.compile(r'@(\w+){(\S+),').match
+match_title = re.compile(r'[^book][ \t]?title[ \t]*= {(.*)},').match
+match_auth = re.compile(r'[^book][ \t]?author[ \t]*= {(.*)},').match
+match_year = re.compile(r'[^book][ \t]?year[ \t]*= {(.*)},').match 
+math_jour = re.compile(r'[^book][ \t]?journal[ \t]*= {(.*)},').match
+
+# Data model. Contains the title of the work, citekey and type.
+CiteKey = namedtuple('CiteKey', 'title key type auth year')
+
+
+def log(s, *args):
+    &quot;&quot;&quot;Write string to STDERR.&quot;&quot;&quot;
+    if args:
+        s = s % args
+
+#    if isinstance(s, unicode):
+#        s = s.encode('utf-8')
+
+    print(s, file=sys.stderr)
+
+
+def extract_citekeys(bibtex):
+    &quot;&quot;&quot;Parse citekeys contained in the BibTeX.&quot;&quot;&quot;
+    keys = []
+    lines = [s for s in bibtex.split('\n')]
+
+    title = key = typ = auth = year = None
+
+    for line in lines:
+        if line == '}':
+            if key and typ and auth:
+            #if title and key and typ:
+                keys.append(CiteKey(title, key, typ, auth, year))
+            else:
+                log('Invalid entry: title=%r, key=%r, typ=%r', title, key, typ)
+            title = key = typ = auth = None
+            continue
+
+        m = match_key(line)
+        if m:
+            typ, key = m.groups()
+            #log(&quot;Key: %r&quot;, line)
+            continue
+
+        
+        m = match_title(line)
+        if m:
+            #log(&quot;Title: %r&quot;, line)
+            title = m.group(1)
+
+        m = match_auth(line)
+        if m:
+            auth = m.group(1)
+
+        m = match_year(line)
+        if m:
+            year = m.group(1)
+            
+        #m = match_jour(line)
+        #if m:
+        #    jour = m.group(1)
+        
+    return keys
+
+
+def print_items(*items):
+    &quot;&quot;&quot;Write items to STDOUT as JSON.&quot;&quot;&quot;
+    json.dump(dict(items=items), sys.stdout)
+
+
+def warning_item(title, subtitle='Try a different query'):
+    &quot;&quot;&quot;Alfred item that shows a warning message.&quot;&quot;&quot;
+    return dict(title=title, subtitle=subtitle,
+                valid=False, icon={'path': ICON_WARNING})
+
+def clean_authors(BibTexAuthorList):
+    AuthorList = BibTexAuthorList.split(&quot;and &quot;)
+    if (len(AuthorList)&gt;2):
+        FirstAuthorEtAl = AuthorList[0] + &quot;et al.&quot;
+        return(FirstAuthorEtAl)
+    else:
+        return(BibTexAuthorList)
+
+def result_item(ck):
+    &quot;&quot;&quot;Create an Alfred item for a CiteKey.&quot;&quot;&quot;
+    #subtitle = u'{ck.auth} {ck.key} ({ck.type})'.format(ck=ck)
+    #subtitle = u'{ck.auth} ({ck.type})'.format(ck=ck)
+    subtitle = u'{auth} {year} ({type})'.format(auth = clean_authors(ck.auth), year = ck.year, type = ck.type)
+    return dict(title=ck.title,
+                subtitle=subtitle,
+                match=u'{}, {}, {}'.format(ck.auth, ck.title, ck.key),
+                #arg=u'[@{}]'.format(ck.key),
+                #arg=u'\\cite{{{}}}'.format(ck.key),
+                arg=u'{}, {}, {}'.format(clean_authors(ck.auth), ck.title, ck.year),
+                valid=True)
+
+def my_result_item(ck):
+    &quot;&quot;&quot;Create an Alfred item for a CiteKey.&quot;&quot;&quot;
+    #subtitle = u'{ck[\'ID\']} ({ck[\'ENTRYTYPE\']})'.format(ck=ck)
+    log(&quot;%s&quot;,ck)
+    return dict(title=ck[&quot;title&quot;],
+                subtitle=' ',#subtitle,
+                match = '{} {}'.format(ck['title'], ck['ID']),
+                arg='[@{}]'.format(ck['ID']),
+                valid=True)
+
+
+def main():
+    &quot;&quot;&quot;Run Script Filter.&quot;&quot;&quot;
+    if not os.path.exists(BIBFILE):
+        log('%s does not exist', BIBFILE)
+        print_items(warning_item(BIBFILE + ' does not exist',
+                                 'Check the BIBFILE setting'))
+        return
+
+    with open(BIBFILE) as fp:
+        txt = fp.read()#.decode('utf-8')
+        
+#    with open(BIBFILE) as bibtex_file:
+#        bib_database = bibtexparser.bparser.BibTexParser(common_strings=True).parse_file(bibtex_file)
+
+    
+    keys = extract_citekeys(txt)
+    log('%d citekeys in %s', len(keys), BIBFILE)
+    if not keys:
+        print_items(warning_item('No citekeys found in file', BIBFILE))
+        return
+
+    print_items(*[result_item(ck) for ck in keys])
+#    print_items(*[my_result_item(ck) for ck in bib_database.entries])
+
+
+if __name__ == '__main__':
+    main()
+```</content><author><name>Matthieu R Bloch</name></author><category term="tools,alfred,bibtex" /><summary type="html">Does this feel familiar?</summary></entry><entry><title type="html">My workflow to create slides for the classroom</title><link href="/2020/02/15/workflow.html" rel="alternate" type="text/html" title="My workflow to create slides for the classroom " /><published>2020-02-15T00:00:00-05:00</published><updated>2020-02-15T00:00:00-05:00</updated><id>/2020/02/15/workflow</id><content type="html" xml:base="/2020/02/15/workflow.html">After 10 years of teaching, I have been trying to find a good presentation tool for my courses. I have experimented with a bunch of approaches, from chalkboard and whiteboard to powerpoint, keynote, beamer, etc. Every approach as its pros and cons but I have finally settled for an approach that is not too time-consuming.
+
+# What is out there?
+
+##### Chalkboard and whiteboard
+
+*Pros*
+- It is still my favorite method for mathematically oriented courses, that is how I feel the most comfortable because of the flexibility it gives me.
+- It forces students to write, which I still think is a key component of learning despite what some well-meaning people want me to believe.
+- It slows down the pace of the course, which I also think is a key component of learning.
+
+*Cons:* 
+- I end up spending a lot of time writing definitions at the board.
+- I always end up introducing a few typos, and some students are pretty unforgiving when I tell them &quot;Just change the sign in front of $x$ throughout our calculations&quot;.
+- Many students do not like to write anymore. I am not sure why but I am not sure we can fight this trend.
+- Many students like to have more electronic materials available, and feel more comfortable with slides. 
+
+##### Powerpoint and Keynote
+
+*Pros*
+- That is a pretty standard tool that everyone uses, so it is easy to recycle material.
+- I can assemble a deck of slides pretty fast.
+- I can include nice illustrations and figures.
+
+*Cons*
+- Most deck of slides look ugly unless I spend an unreasonable amount of time polishing them.
+- I cannot reuse anything after any unavoidable software update.
+- Including equations is a nightmare.
+- I can write on slides using a tablet, but it creates ugly and large PDFs.
+- It makes for boring lectures during which students fall asleep.
+- If I want to write details, I have to go back to the board, which is impractical when the classroom is not setup for this.
+
+##### Beamer
+
+*Pros*
+- I can recycle equations from my notes or papers in $\LaTeX$.
+
+*Cons*
+- There is an overhead to creating a full Beamer presentations that compiles properly.
+- Basic beamer templates are ok, but my presentations look like everybody else's.
+- Beamer eventually suffers from the same pitfalls as Powerpoint and Keynote.
+
+# What I wish for
+
+Ideally, I would like a tool that would offer the following:
+1. It should be in a format that is easily searchable and will be supported long term.
+2. I should be able to use $\LaTeX$ equations.
+3. I should be able to write on the slides.
+4. I should be able to summon a blank slide to use as a whiteboard whenever needed.
+5. I should look relatively nice and clean.
+6. The tools should force me to focus on content without worrying too much about formatting.
+
+# What I have settled for
+
+I have finally settled for a solution based on markdown files, which I then convert into html using `pandoc`, and visualize with a web browser. Slides are rendered thanks to reveal.js and mathjax javascript plugins. The result satisfies most of what I wished for, but it definitely requires a level of geekiness to use.
+
+My workflow now boils down to the following.
+1. I create a markdown file with some basic yaml header. The markdown file supports basic formatting (sections, bold, italic), $\LaTeX$ equations, and some basic html to include figures, create definitions, etc. This is much simpler to use than beamer and I can easily search the markdown files for content.
+2. I convert the markdown file to an html file using `pandoc` and visualize in a web browser. The result looks clean and I can easily annotate as needed or summon a whiteboard.
+
+# A working example
+
+## Getting things installed
+
+You will need pandoc and some javascript libraries.
+- Install pandoc from [here](https://pandoc.org)
+- Download mathjax from [here](https://www.mathjax.org). It is possible to skip this and load the javascript from a cdn when viewing the slides, but this only works with an internet connection.
+- Download reveal.js from [here](https://revealjs.com/).
+
+I will assume that you have pandoc in your shell path and the following tree structure
+```bash
+some_directory
+|-- slides
+|-- mathjax
+|-- reveal.js
+```
+
+There are a few [plugins](https://github.com/hakimel/reveal.js/wiki/Plugins,-Tools-and-Hardware) available for reveal.js, I use the following which I have found useful
+- [chalkboard](https://github.com/rajgoel/reveal.js-plugins/tree/master/chalkboard): a plugin adding a chalkboard and slide annotation
+- [elapsed-time-bar](https://github.com/tkrkt/reveal.js-elapsed-time-bar): add progress bar of elapsed time 
+- [pdfexport](https://github.com/McShelby/reveal-pdfexport) easily switch between screen and the built-in PDF export mode by pressing a shortcut key.
+
+Make sure that you install the plugins in `some_directory/reveal.js/plugin/`
+```bash
+some_directory
+|-- slides
+|-- mathjax
+|-- reveal.js
+	|-- [...]
+	|-- plugin
+		|-- [...]
+		|-- chalkboard
+		|-- elapsed-time-bar
+		|-- pdfexport
+```
+
+## Creating a basic css template
+
+The layout of your slides is controlled through css. There are several templates offered by default in reveal.js, which you can easily tweak. The template we will be using is called [`matthieu.css`](/img/posts/matthieu.css). Make sure the template is in the directory `some_directory/reveal.js/css/theme/`
+
+Just as an example, you can create a theorem environment as follows:
+```css
+.reveal .theorem {
+  display: block;
+  text-align: left;
+  font-style: normal;
+  border-left-style: solid;
+  border-left-color: orange;
+  padding-left: 5px;
+  border-left-width: 5px;
+}
+.reveal .theorem:before {
+  content: &quot;Theorem. &quot;;
+  font-weight: bold;
+  color: orange;
+  font-style: normal;
+}
+.reveal .theorem[name]:before {
+  content: &quot;Theorem (&quot; attr(name) &quot;) &quot;;
+}
+```
+
+## Creating a basic html template
+
+You also need a bunch of html formatting to properly render your slides. Fortunately, this is mostly handled by reveal.js. You only need to worry about this if you want to tweak the plugins options, add $\LaTeX$ macros to mathjax, etc. My template file is called [`template.md`](/img/posts/template.md) and should be stored in `some_directory/slides/`
+
+```
+some_directory
+|-- slides
+    |-- template.md
+|-- mathjax
+|-- reveal.js
+```
+
+## Creating your first slide deck
+
+Your slide deck is just a markdown file with basic formatting. To get started, an example file we will create [`myfirstslides.md`](/img/posts/myfirstslides.md) in `some_directory/slides/`
+```
+some_directory
+|-- slides
+    |-- template.md
+    |-- myfirstslides.md
+|-- mathjax
+|-- reveal.js
+```
+
+The first part of the file is a header with basic information
+```markdown
+---
+title: &quot;My first slides&quot;
+author: Matthieu R Bloch
+date: Tuesday, February 15, 2020
+duration: 75
+published: false
+slideNumber: true
+theme: matthieu
+width: 1600
+height: 1000
+transition: fade
+---
+```
+
+The meaning of the fields should be self-explanatory, with the exception of `duration`, which controls the length of the elapsed time bar at the bottom of the slide.
+
+The second part of the file consists of the slides themselves.
+
+``` markdown
+## Slide header 1
+
+- A first item with some equation $x^2$
+- A second item with some other equation $$(a+b)^2=a^2+b^2$$
+
+## Slide header 2
+
+We will use a theorem
+
+&lt;div class=&quot;theorem&quot; name=&quot;My first theorem&quot;&gt;
+$$1=1$$
+&lt;/div&gt;
+```
+
+## Converting to html
+
+Once you have your slides ready, convert them to html using the following command
+
+```bash
+pandoc -s --mathjax=../mathjax/MathJax.js -i -t revealjs myfirstslides.md
+--include-in-header=leftalign.md --template=template.md -V center=false 
+-V history=false -V revealjs-url=../reveal.js -o myfirstslides.html
+```
+
+This will create a file `myfirstslides.html`, which you can visualize in chrome.
+```
+some_directory
+|-- slides
+    |-- template.md
+    |-- myfirstslides.md
+    |-- myfirstslides.html
+|-- mathjax
+|-- reveal.js
+```
+
+## Using and adding annotations to your slides
+
+If you visualize your slides in chrome, you should now see something like this:
+
+&lt;img class = &quot;plain&quot; style='height: 100%; width: 100%; object-fit: contain' src=&quot;/img/posts/myfirstslides.png&quot; alt=&quot;Image&quot;&gt;
+
+You can interact with your slide deck as follows:
+- To navigate, use the keyboard arrows 
+- To go full screen, press 'F'
+- To view the side menu, press 'M'
+- To export the presentation as a PDF file, press 'E' while watching the presentation. This will reformat the presentation to make it easily printable or exportable as a PDF. This is best done with Chrome, although it seems to work with Firefox and Safari.
+- To enter the slide annotation mode, press 'C' (for &quot;chalkboard&quot;)
+- To call up a blank board, press 'B'
+
+I have modified the template to create icons that you can click on instead of typing 'M', 'C', and 'B'. This is convenient when using a tablet and a stylus without a physical keyboard.
+
+All your annotations are saved in a json format. To save them, you need to *download* the json file by clicking on the top-most icon on the bottom left. This will simply download the json file. At the end of the lecture, change the json file name to `myfirstslides.json` and add it to the directory `some_directory/slides/`
+
+You can now recompile your slides with the command
+```
+pandoc -s --mathjax=../mathjax/MathJax.js -i -t revealjs myfirstslides.md
+--include-in-header=leftalign.md --template=template.md -V center=false -V history=false 
+-V revealjs-url=../reveal.js -V loadchalkboard=myfirstslides.json
+```
+All this does is tell reveal.js to load your previous annotations through the option `-V loadchalkboard=myfirstslides.json`. If you reload your slides, you will have access to your annotations. If needed, you can modify what you wrote and save the result to a new json file.
+
+```
+some_directory
+|-- slides
+    |-- template.md
+    |-- myfirstslides.md
+    |-- myfirstslides.html
+    |-- myfirstslides.json	
+|-- mathjax
+|-- reveal.js
+```
+
+## Final geeky details
+
+For those of you more inclined to investigate what is under the hood, here are a few thoughts and hacks that I have used.
+
+##### Writing smoothly on a tablet
+
+I initially had some annoying lag when writing on my tablet. I had to modify `template.md` following the information I found [here](https://github.com/rajgoel/reveal.js-plugins/pull/51/files).
+
+##### Preventing download information from popping up
+
+I save my json annotations several times during a class. To avoid chrome showing me the download information, I installed the extensions [Disable Download Bar](https://chrome.google.com/webstore/detail/disable-download-bar/gjdldigdojpjlmphnogmcmhojfadfmem?hl=en-GB).
+
+##### Adding my own LaTeX macros to mathjax
+
+I have included a bunch of my favorite macros in `template.md`. Here is just a small example of what I have modified
+```markdown
+    MathJax.Hub.Config({
+      &quot;HTML-CSS&quot;: {
+          preferredFont: &quot;TeX&quot;,
+          availableFonts: [&quot;TeX&quot;]
+      },
+      TeX: {
+        Macros: {
+          calA: &quot;{\\mathcal{A}}&quot;,
+          calB: &quot;{\\mathcal{B}}&quot;,
+		  calC: &quot;{\\mathcal{C}}&quot;,
+          calD: &quot;{\\mathcal{D}}&quot;,
+          calK: &quot;{\\mathcal{K}}&quot;,
+          calE: &quot;{\\mathcal{E}}&quot;,
+          calF: &quot;{\\mathcal{F}}&quot;,
+          calH: &quot;{\\mathcal{H}}&quot;,
+          calL: &quot;{\\mathcal{L}}&quot;,
+          calN: &quot;{\\mathcal{N}}&quot;,
+	    }
+      }
+    });
+```
+
+##### Footers, headers, slide numbers
+
+Because of how reveal.js operates, I have found it really hard to add a clean footer and to introduce slide numbers. I could get things to work in the browser but that would not export well to pdf. I have decided that it was not that crucial but that would definitely be a nice addition.
+
+##### Printing PDFs
+
+I sometimes have issues when exporting my annotations to PDFs. I ended up modifying a line 383 in the code of `chalkboard.js` to
+```
+if (i&lt;storage[1].data.length -1) {
+    nextSlide.push( slide.nextSibling );
+}
+```
+That seems to partially solve my problem.
+
+# Last thoughts
+
+This workflow is not perfect, but it is come as close to my wish list as I could hope. There is still a long way to make this approach a clean and user-friendly tool but it has worked pretty well for me.</content><author><name>Matthieu R Bloch</name></author><category term="tools" /><summary type="html">After 10 years of teaching, I have been trying to find a good presentation tool for my courses. I have experimented with a bunch of approaches, from chalkboard and whiteboard to powerpoint, keynote, beamer, etc. Every approach as its pros and cons but I have finally settled for an approach that is not too time-consuming.</summary></entry><entry><title type="html">Correction to “Covert Communication Over Noisy Channels”</title><link href="/2019/12/26/errata.html" rel="alternate" type="text/html" title="Correction to &quot;Covert Communication Over Noisy Channels&quot;" /><published>2019-12-26T00:00:00-05:00</published><updated>2019-12-26T00:00:00-05:00</updated><id>/2019/12/26/errata</id><content type="html" xml:base="/2019/12/26/errata.html">&lt;p&gt;This is a small correction to Equation (110) in &lt;a href=&quot;#Bloch2015b&quot;&gt;(Bloch, 2016)&lt;/a&gt;. Many thanks to &lt;a href=&quot;https://www.ece.nus.edu.sg/stfpage/vtan/&quot;&gt;Vincent Tan&lt;/a&gt; for discovering the error.&lt;/p&gt;
+
+&lt;h3 id=&quot;erroneous-statement&quot;&gt;Erroneous statement&lt;/h3&gt;
+
+&lt;p&gt;The erroneous statement is in Eq. (100), where I claimed that 
+&lt;script type=&quot;math/tex&quot;&gt;\int\frac{P_1^2(y)}{P_0(y)}dy = \exp(-x_1^2/\sigma^2)&lt;/script&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;fixing-the-error&quot;&gt;Fixing the error&lt;/h3&gt;
+
+&lt;p&gt;The correct statement is 
+&lt;script type=&quot;math/tex&quot;&gt;\int\frac{P_1^2(y)}{P_0(y)}dy = \exp(+x_1^2/\sigma^2)&lt;/script&gt;.
+Fortunately, this has no incidence on the rest of the paper, since we only cared about $\int\frac{P_1^2(y)}{P_0(y)}dy&amp;lt;\infty$.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;span id=&quot;Bloch2015b&quot;&gt;M. R. Bloch, “Covert Communication over Noisy Channels: A Resolvability Perspective,” &lt;i&gt;IEEE Transactions on Information Theory&lt;/i&gt;, vol. 62, no. 5, pp. 2334–2354, May 2016.&lt;/span&gt;
+&lt;br /&gt;
+
+&lt;a href=&quot;http://dx.doi.org/10.1109/TIT.2016.2530089&quot; class=&quot;btn btn-tiny&quot;&gt;DOI&lt;/a&gt;
+
+
+&lt;a href=&quot;http://arxiv.org/abs/1503.08778&quot; class=&quot;btn btn-tiny&quot;&gt;arXiv&lt;/a&gt;
+
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Bloch2015b-abstract&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Bloch2015b-abstract&quot;&gt;Abstract&lt;/a&gt;
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Bloch2015b-bibtex&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Bloch2015b-bibtex&quot;&gt;BibTeX&lt;/a&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Bloch2015b-abstract&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body tinytext&quot;&gt;
+        We consider the situation in which a transmitter attempts to communicate reliably over a discrete memoryless channel, while simultaneously ensuring covertness (low probability of detection) with respect to a warden, who observes the signals through another discrete memoryless channel. We develop a coding scheme based on the principle of channel resolvability, which generalizes and extends prior work in several directions. First, it shows that irrespective of the quality of the channels, it is possible to communicate on the order of  \sqrt n reliable and covert bits over  n channel uses if the transmitter and the receiver share on the order of  \sqrt n key bits. This improves upon earlier results requiring on the order of  \sqrt n\log n key bits. Second, it proves that if the receiver’s channel is better than the warden’s channel in a sense that we make precise, it is possible to communicate on the order of  \sqrt n reliable and covert bits over  n channel uses without a secret key. This generalizes earlier results established for binary symmetric channels. We also identify the fundamental limits of covert and secret communications in terms of the optimal asymptotic scaling of the message size and key size, and we extend the analysis to Gaussian channels. The main technical problem that we address is how to develop concentration inequalities for low-weight sequences. The crux of our approach is to define suitably modified typical sets that are amenable to concentration inequalities.t
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Bloch2015b-bibtex&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body&quot;&gt;
+        &lt;pre&gt;@article{Bloch2015b,
+  author = {Bloch, Matthieu R.},
+  journal = {IEEE Transactions on Information Theory},
+  title = {Covert Communication over Noisy Channels: A Resolvability Perspective},
+  year = {2016},
+  issn = {0018-9448},
+  month = may,
+  number = {5},
+  pages = {2334-2354},
+  volume = {62},
+  creationdate = {2015-03-31T00:00:00},
+  doi = {10.1109/TIT.2016.2530089},
+  eprint = {1503.08778},
+  file = {:2016-Bloch-IEEETransIT.pdf:PDF},
+  groups = {Steganography and covert communications},
+  keywords = {AWGN channels;Encoding;Memoryless systems;Noise measurement;Reliability theory;Covert communications;Shannon theory;low probability of detection;physical-layer security},
+  owner = {mattbloch}
+}
+&lt;/pre&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;/li&gt;&lt;/ol&gt;</content><author><name>Matthieu R Bloch</name></author><category term="errata" /><summary type="html">This is a small correction to Equation (110) in (Bloch, 2016). Many thanks to Vincent Tan for discovering the error.</summary></entry><entry><title type="html">Correction to “Polar codes for Covert Communications over Asynchronous Discrete Memoryless Channels”</title><link href="/2018/10/12/errata.html" rel="alternate" type="text/html" title="Correction to &quot;Polar codes for Covert Communications over Asynchronous Discrete Memoryless Channels&quot;" /><published>2018-10-12T00:00:00-04:00</published><updated>2018-10-12T00:00:00-04:00</updated><id>/2018/10/12/errata</id><content type="html" xml:base="/2018/10/12/errata.html">&lt;p&gt;This is a small correction to the proof of Lemma 11 in &lt;a href=&quot;#Freche2017&quot;&gt;(Frèche, Bloch, &amp;amp; Barret, 2017)&lt;/a&gt;. Many thanks to Ishaque Ashar for discovering the error.&lt;/p&gt;
+
+&lt;h3 id=&quot;erroneous-statement&quot;&gt;Erroneous statement&lt;/h3&gt;
+
+&lt;p&gt;The erroneous statement is after Eq. (79) in the proof of Lemma 11. We claimed that the Markov chain &lt;script type=&quot;math/tex&quot;&gt;Z_{1:i-1}^{1:n}-CW'_i-Z_{i}^{1:n}&lt;/script&gt; holds. However, looking at the dependencies introduced through the chaining in Fig. 3, we see that the correct Markov chain is instead &lt;script type=&quot;math/tex&quot;&gt;Z_{i}^{1:n}-CW'_i-Z_{i+1:b_n}^{1:n}&lt;/script&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;fixing-the-error&quot;&gt;Fixing the error&lt;/h3&gt;
+
+&lt;p&gt;Fortunately, there is an easy correction. By Pinsker’s inequality,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\mathbb{V}\left(\tilde{p}_{Z_{1:b_n}^{1:n}},\prod_{i=1}^{b_n}\tilde{p}_{Z_i^{1:n}}\right)\leq \mathbb{D}\left(\tilde{p}_{Z_{1:b_n}^{1:n}}\bigg\Vert\prod_{i=1}^{b_n}\tilde{p}_{Z_i^{1:n}}\right).&lt;/script&gt;
+
+&lt;p&gt;The relative entropy can then be bounded as&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align}
+\mathbb{D}\left(\tilde{p}_{Z_{1:b_n}^{1:n}}\bigg\Vert\prod_{i=1}^{b_n}\tilde{p}_{Z_i^{1:n}}\right) &amp;= \sum_{i=1}^{b_n}\mathbb{D}\left(\tilde{p}_{Z_{i}^{1:n}|Z_{i+1:b_n}^{1:n}}\bigg\Vert\tilde{p}_{Z_i^{1:n}}\bigg\vert\tilde{p}_{Z_{i+1:b_n}^{1:n}}\right)\\
+  &amp;=\sum_{i=1}^{b_n}\mathbb{I}\left(\tilde{Z}_{i}^{1:n};\tilde{Z}_{i+1:b_n}^{1:n}\right)\\
+  &amp;\leq \sum_{i=1}^{b_n}\mathbb{I}\left(\tilde{Z}_{i}^{1:n};CW'_i\tilde{Z}_{i+1:b_n}^{1:n}\right)\\
+  &amp;= \sum_{i=1}^{b_n}\left[\mathbb{I}\left(\tilde{Z}_{i}^{1:n};CW'_i\right)+\underbrace{\mathbb{I}\left(\tilde{Z}_{i}^{1:n};\tilde{Z}_{i+1:b_n}^{1:n}|CW'_i\right)}_{=0}\right]\\
+  &amp; = \sum_{i=1}^{b_n}\mathbb{I}\left(\tilde{Z}_{i}^{1:n};CW'_i\right)\\
+  &amp;\leq b_n\delta_n^{(5)}
+\end{align} %]]&gt;&lt;/script&gt;
+
+&lt;p&gt;Therefore,
+&lt;script type=&quot;math/tex&quot;&gt;\mathbb{V}\left(\tilde{p}_{Z_{1:b_n}^{1:n}},\prod_{i=1}^{b_n}\tilde{p}_{Z_i^{1:n}}\right)\leq \sqrt{b_n\delta_n^{(5)}} \leq b_n\sqrt{\delta_n^{(5)}}.&lt;/script&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+&lt;ol class=&quot;bibliography&quot;&gt;&lt;li&gt;&lt;span id=&quot;Freche2017&quot;&gt;G. Frèche, M. Bloch, and M. Barret, “Polar Codes for Covert Communications over Asynchronous Discrete Memoryless Channels,” &lt;i&gt;Entropy&lt;/i&gt;, vol. 20, no. 1, p. 3, Dec. 2017.&lt;/span&gt;
+&lt;br /&gt;
+
+&lt;a href=&quot;http://dx.doi.org/10.3390/e20010003&quot; class=&quot;btn btn-tiny&quot;&gt;DOI&lt;/a&gt;
+
+
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Freche2017-abstract&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Freche2017-abstract&quot;&gt;Abstract&lt;/a&gt;
+
+&lt;a class=&quot;btn btn-tiny&quot; data-toggle=&quot;collapse&quot; href=&quot;#Freche2017-bibtex&quot; role=&quot;button&quot; aria-expanded=&quot;false&quot; aria-controls=&quot;Freche2017-bibtex&quot;&gt;BibTeX&lt;/a&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Freche2017-abstract&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body tinytext&quot;&gt;
+        This paper introduces an explicit covert communication code for binary-input asynchronous discrete memoryless channels based on binary polar codes, in which legitimate parties exploit uncertainty created by both the channel noise and the time of transmission to avoid detection by an adversary. The proposed code jointly ensures reliable communication for a legitimate receiver and low probability of detection with respect to the adversary, both observing noisy versions of the codewords. Binary polar codes are used to shape the weight distribution of codewords and ensure that the average weight decays as the block length grows. The performance of the proposed code is severely limited by the speed of polarization, which in turn controls the decay of the average codeword weight with the block length. Although the proposed construction falls largely short of achieving the performance of random codes, it inherits the low-complexity properties of polar codes.
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;collapse multi-collapse&quot; id=&quot;Freche2017-bibtex&quot;&gt;
+    &lt;br /&gt;
+    &lt;div class=&quot;card card-body&quot;&gt;
+        &lt;pre&gt;@article{Freche2017,
+  author = {Fr\`eche, Guillaume and Bloch, Matthieu and Barret, Michel},
+  title = {Polar Codes for Covert Communications over Asynchronous Discrete Memoryless Channels},
+  journal = {Entropy},
+  year = {2017},
+  volume = {20},
+  number = {1},
+  pages = {3},
+  month = dec,
+  issn = {1099-4300},
+  doi = {10.3390/e20010003},
+  file = {:2017-Freche-Entropy.pdf:PDF},
+  groups = {Steganography and covert communications, Polar codes}
+}
+&lt;/pre&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;/li&gt;&lt;/ol&gt;</content><author><name>Matthieu R Bloch</name></author><category term="errata" /><summary type="html">This is a small correction to the proof of Lemma 11 in (Frèche, Bloch, &amp;amp; Barret, 2017). Many thanks to Ishaque Ashar for discovering the error.</summary></entry></feed>
