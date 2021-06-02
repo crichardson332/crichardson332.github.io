@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>
+      {% if page.title %}
+        {{ page.title }} | {{ site.title }}
+      {% else %}
+        {{ site.title }}
+      {% endif %}
+    </title>
+
+    <meta name="author" content="{{ site.author }}" />
+
+    <!-- Description -->
+    {% if page.description %}
+      <meta name="description" content="{{ page.description }}" />
+    {% else %}
+      <meta name="description" content="{{ site.description }}">
+    {% endif %}
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="{{ "/reveal.js/css/reveal.scss" | prepend: site.baseurl }}"/>
+    {%if page.theme %}
+      <link rel="stylesheet" href="{{ "/reveal.js/css/theme/" | prepend: site.baseurl | append: page.theme | append: '.css' }}" id="theme"/>
+    {% else %}
+      <link rel="stylesheet" href="{{ "/reveal.js/css/theme/source/black.scss" | prepend: site.baseurl }}" id="theme"/>
+    {% endif %}
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="{{ "/reveal.js/plugin/highlight/zenburn.css" | prepend: site.baseurl }}"/>
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '{{ "/reveal.js/css/print/pdf.scss" | prepend: site.baseurl }}' : '{{ "/reveal.js/css/print/paper.scss" | prepend: site.baseurl }}';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <link rel="apple-touch-icon" href="{{ "/apple-touch-icon.png" | prepend: site.baseurl }}" />
+
+    <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="reveal">
+      <div class="slides">
+        {{ content }}
+      </div>
+    </div>
+
+    <!-- <script src="{{ "/reveal.js/lib/js/head.min.js" | prepend: site.baseurl }}"></script> -->
+    <script src="{{ "/reveal.js/js/reveal.js" | prepend: site.baseurl }}"></script>
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        {%if page.transition %}
+          transition: '{{page.transition}}',
+        {% else %}
+          transition: 'slide', // none/fade/slide/convex/concave/zoom
+        {% endif %}
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '{{ "/reveal.js/lib/js/classList.js" | prepend: site.baseurl }}', condition: function() { return !document.body.classList; } },
+          { src: '{{ "/reveal.js/plugin/markdown/marked.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "/reveal.js/plugin/markdown/markdown.js" | prepend: site.baseurl }}', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '{{ "/reveal.js/plugin/highlight/highlight.js" | prepend: site.baseurl }}', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '{{ "/reveal.js/plugin/zoom-js/zoom.js" | prepend: site.baseurl }}', async: true },
+          { src: '{{ "/reveal.js/plugin/notes/notes.js" | prepend: site.baseurl }}', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
+
+<!--<html>-->
+<!--<head>-->
+<!--  <meta charset="utf-8">-->
+<!--  <meta name="generator" content="pandoc">-->
+<!--  <meta name="author" content="Chris Richardson">-->
+<!--  <title>Straight Line Theorem</title>-->
+<!--  <meta name="apple-mobile-web-app-capable" content="yes">-->
+<!--  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">-->
+<!--  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">-->
+<!--  <link rel="stylesheet" href="/reveal.js/css/reveal.css">-->
+<!--  <style type="text/css">-->
+<!--      code{white-space: pre-wrap;}-->
+<!--      span.smallcaps{font-variant: small-caps;}-->
+<!--      span.underline{text-decoration: underline;}-->
+<!--      div.column{display: inline-block; vertical-align: top; width: 50%;}-->
+<!--  </style>-->
+
+<!--<script async defer src="https://buttons.github.io/buttons.js"></script>-->
+
+<!--  <link rel="stylesheet" href="/css/theme/matthieu-dark.css" id="theme">-->
+
+<!--  <!-1-[if lt IE 9]>-->
+<!--  <script src="reveal.js/lib/js/html5shiv.js"></script>-->
+<!--  <![endif]-1->-->
+<!--  <style type="text/css">-->
+<!--  p { text-align: left; }-->
+<!--  </style>-->
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<!--</head>-->
+<!--<body>-->
+<!--  <div class="reveal">-->
+<!--    <div class="slides">-->
+
+<!--<section id="title-N">-->
+<!--  <h1 class="title">The Straight Line Theorem</h1>-->
+<!--  <p class="author">Chris Richardson</p>-->
+<!--  <p class="date">April 15, 2020</p>-->
+<!--</section>-->
+
+<!--<section id="problem-statement" class="slide level2">-->
+<!--<h2>PROBLEM STATEMENT</h2>-->
+<!--<div>-->
+<!--<ul>-->
+<!--<li class="fragment"><div class="theorem">-->
+<!--<p>The shortest path <span class="math inline">\(f(x)\)</span> passing between two points <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\) is a straight line.</span></p>-->
+<!--</div></li>-->
+<!--<li class="fragment">To prove the theorem, we will use a field of mathematical analysis called <em>calculus of variations</em> developed by Bernoulli, Euler, and Lagrange in the 18th century.</li>-->
+<!--<li class="fragment">This field is concerned with finding extrema (maxima and minima) of <em>functionals</em>, which can be thought of as <em>functions of functions</em>.</li>-->
+<!--<li class="fragment"><div class="example">-->
+<!--<p>Given a function <span class="math inline">\(f(x)\)</span>, the integral <span class="math inline">\(\int f(x) dx\)</span> is a <em>functional</em> of <span class="math inline">\(f(x)\)</span>.</p>-->
+<!--</div></li>-->
+<!--</ul>-->
+<!--</div>-->
+<!--</section>-->
+
+<!--<section id="calculus-of-variations" class="slide level2">-->
+<!--<h2>Background: Calculus of Variations</h2>-->
+<!--<ul>-->
+<!--<li class="fragment">Consider the functional: <span class="math display">\[ J(y) = \int_{x_1}^{x_2} L(x,y(x),y'(x))dx \]</span></li>-->
+<!--<li class="fragment">The goal is to minimize <span class="math inline">\(J(y)\)</span>. Let <span class="math inline">\(f = \underset{y}{\mathrm{argmin\,}} J(y)\)</span>. Then we can say that for any arbitrary smooth <em>variation</em> <span class="math inline">\(\eta(x)\)</span> vanishing at the endpoints, <span class="math display">\[ J(f) \leq J(f+\epsilon \eta) \]</span> for some <span class="math inline">\(\epsilon > 0\)</span>. Now we define a function of <span class="math inline">\(\epsilon\)</span> <span class="math display">\[ \Phi(\epsilon) \overset{\Delta}{=} J(f+\epsilon \eta) \]</span></li>-->
+<!--<li class="fragment">This function is minimized at <span class="math inline">\(\epsilon=0\)</span>. Because it's a scalar function we can set the derivative to 0:</li>-->
+<!--<li class="fragment"><span class="math display">\[ \frac{d \Phi(0)}{d\epsilon}=0 \]</span></li>-->
+<!--</ul>-->
+<!--</section>-->
+
+<!--<section id="calculus-of-variations2" class="slide level2">-->
+<!--<h2>Background: Calculus of Variations</h2>-->
+<!--<ul>-->
+<!--<li class="fragment">Now we look at the total derivative<span class="math display">\[\frac{d \Phi}{d\epsilon} = \int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = 0\]</span></li>-->
+<!--</li>-->
+<!--<li class="fragment"><p>Taking the total derivative of <span class="math inline">\(L(x,y,y')\)</span>, noting that <span class="math inline">\(y=f+\epsilon \eta\)</span> and <span class="math inline">\(y'=f'+\epsilon \eta'\)</span> we get</p></li>-->
+<!--<li class="fragment"><span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\frac{dy}{d\epsilon} + \frac{\partial L}{\partial y'}\frac{dy'}{d\epsilon}\]</span></li>-->
+<!--<li class="fragment">And because <span class="math inline">\(\frac{dy}{d\epsilon}=\eta\)</span> and <span class="math inline">\(\frac{dy'}{d\epsilon}=\eta'\)</span>, we get <span class="math display">\[\frac{d L}{d\epsilon} = \frac{\partial L}{\partial y}\eta + \frac{\partial L}{\partial y'}\eta'\]</span><span class="math display">\[\int_{x_1}^{x_2} \frac{dL}{d\epsilon} dx = \int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx = 0\]</span></li>-->
+<!--</ul>-->
+<!--</section>-->
+
+<!--<section id="calculus-of-variations3" class="slide level2">-->
+<!--<h2>Background: Calculus of Variations</h2>-->
+<!--<ul>-->
+<!--<li class="fragment">Using integration by parts we get <span class="math display">\[\int_{x_1}^{x_2} \left(\frac{\partial L}{\partial f}\eta + \frac{\partial L}{\partial f'}\eta'\right) dx = \int_{x_1}^{x_2} \frac{\partial L}{\partial f}\eta dx + \frac{\partial L}{\partial f'}\eta \biggr\rvert_{x_1}^{x_2} - \int_{x_1}^{x_2} \eta \frac{d}{dx} \frac{\partial L}{\partial f'} dx\]</span></li>-->
+<!--<li class="fragment">Because <span class="math inline">\(\eta\)</span> vanishes at the endpoints, we end up with <span class="math display">\[\int_{x_1}^{x_2} \eta \left(\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'}\right) dx = 0\]</span></li>-->
+<!--<li class="fragment">According to the <em>fundamental lemma of the calculus of variations</em>, the integrand here must be identically zero. Thus <span class="math display">\[\frac{\partial L}{\partial f} - \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>-->
+<!--<li class="fragment">This is the <em>Euler-Lagrange Equation</em>.</li>-->
+<!--</ul>-->
+<!--</section>-->
+
+<!--<section id="path-length" class="slide level2">-->
+<!--<h2>Original Problem: Path Length</h2>-->
+<!--<ul>-->
+<!--<li class="fragment">Revisiting our original problem, we want to find a function <span class="math inline">\(y(x)\)</span> that minimizes the path length between two points. In 2-D the path length is given by the functional <span class="math display">\[\int_{x_1}^{x_2} \sqrt{1+\left(\frac{dy}{dx}\right)^2} dx\]</span></li>-->
+<!--<li class="fragment">The Lagrangian here does not explicitly depend on <span class="math inline">\(x\)</span> or <span class="math inline">\(y\)</span>. Thus the Euler-Lagrange equation reduces to <span class="math display">\[ \frac{d}{dx} \frac{\partial L}{\partial f'} = 0\]</span></li>-->
+<!--<li class="fragment">We can integrate both sides and get <span class="math inline">\( \frac{\partial L}{\partial f'} = c\)</span>. Thus <span class="math inline">\( \frac{\partial L}{\partial f'} = \frac{y'}{\sqrt{1+y'^2}} = c\)</span>. Solving for <span class="math inline">\(y'\)</span> we get <span class="math inline">\( y' = \sqrt{\frac{c^2}{1-c^2}} = k\)</span>. Because the slope of the line is constant, it is a straight line.</li>-->
+<!--</ul>-->
+<!--</section>-->
+
+<!--</div>-->
+<!--  </div>-->
+
+<!--  <script src="reveal.js/lib/js/head.min.js"></script>-->
+<!--  <script src="reveal.js/js/reveal.js"></script>-->
+
+<!--  <script>-->
+
+<!--      // Full list of configuration options available at:-->
+<!--      // https://github.com/hakimel/reveal.js#configuration-->
+<!--Reveal.initialize({-->
+<!--        // Display the page number of the current slide-->
+<!--        slideNumber: true,-->
+<!--        slideNumber:"c/t",-->
+<!--        // Push each slide change to the browser history-->
+<!--        history: false,-->
+
+<!--        // Vertical centering of slides-->
+<!--        center: false,-->
+<!--        // Transition style-->
+<!--        transition: 'fade', // none/fade/slide/convex/concave/zoom-->
+<!--        // The "normal" size of the presentation, aspect ratio will be preserved-->
+<!--        // when the presentation is scaled to fit different resolutions. Can be-->
+<!--        // specified using percentage units.-->
+<!--        width: 1600,-->
+<!--        height: 1000,-->
+
+<!--        math: {-->
+<!--          mathjax: '../MathJax-src/components/src/tex-mml-svg.js',-->
+
+<!--          jax: ["input/TeX","output/HTML-CSS"],-->
+
+<!--          tex2jax: {-->
+<!--            inlineMath: [['\\(','\\)']],-->
+<!--            displayMath: [['\\[','\\]']],-->
+<!--            balanceBraces: true,-->
+<!--            processEscapes: false,-->
+<!--            processRefs: true,-->
+<!--            processEnvironments: true,-->
+<!--            preview: 'TeX',-->
+<!--            skipTags: ['script','noscript','style','textarea','pre','code'],-->
+<!--            ignoreClass: 'tex2jax_ignore',-->
+<!--            processClass: 'tex2jax_process'-->
+<!--          },-->
+<!--        },-->
+
+<!--        // Optional reveal.js plugins-->
+
+<!--        dependencies: [-->
+<!--          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },-->
+
+<!--          { src: 'reveal.js/plugin/math/math.js', async: true },-->
+<!--          { src: 'reveal.js/plugin/notes/notes.js', async: true },-->
+<!--          { src: 'reveal.js/plugin/elapsed-time-bar/elapsed-time-bar.js'},-->
+<!--          { src: 'reveal.js/plugin/pdfexport/pdfexport.js', async: true },-->
+<!--          { src: 'reveal.js-plugins/mathsvg/math.js', async: true },-->
+<!--          { src: 'reveal.js-plugins/menu/menu.js', async: true },-->
+<!--          { src: 'reveal.js-plugins/chalkboard/chalkboard.js', async: false},-->
+<!--        ],-->
+
+<!--        pdfSeparateFragments: false,-->
+<!--        allottedTime: 75 * 60 * 1000, // 3 minutes-->
+<!--        pdfExportShortcut: 'E',-->
+<!--        chalkboard: {-->
+<!--                      src: "ece6254sp20-lecture4-slides.json",-->
+<!--                    readOnly: false,-->
+<!--        	theme: "whiteboard",-->
+<!--          toggleChalkboardButton: { left: "30px", bottom: "60px", top: "auto", right: "auto" },-->
+<!--          toggleNotesButton: { left: "30px", bottom: "90px", top: "auto", right: "auto" },-->
+<!--          toggleBlackButton: { left: "30px", bottom: "120px", top: "auto", right: "auto" },-->
+<!--          toggleBlueButton: { left: "30px", bottom: "150px", top: "auto", right: "auto" },-->
+<!--          toggleRedButton: { left: "30px", bottom: "180px", top: "auto", right: "auto" },-->
+<!--          toggleDownloadButton: { left: "60px", bottom: "33px", top: "auto", right: "auto" },-->
+<!--        },-->
+<!--        keyboard: {-->
+<!--          67: function() { RevealChalkboard.toggleNotesCanvas() },	// toggle notes canvas when 'c' is pressed-->
+<!--          66: function() { RevealChalkboard.toggleChalkboard() },	// toggle chalkboard when 'b' is pressed-->
+<!--          46: function() { RevealChalkboard.clear() },	// clear chalkboard when 'DEL' is pressed-->
+<!--          8: function() { RevealChalkboard.reset() },	// reset chalkboard data on current slide when 'BACKSPACE' is pressed-->
+<!--          68: function() { RevealChalkboard.download() },	// downlad recorded chalkboard drawing when 'd' is pressed-->
+<!--		  88: function() { RevealChalkboard.colorNext() },	// cycle colors forward when 'x' is pressed-->
+<!--		  89: function() { RevealChalkboard.colorPrev() },	// cycle colors backward when 'y' is pressed-->
+<!--        },-->
+<!--		pen: ['crosshair'],-->
+<!--      });-->
+<!--    </script>-->
+
+<!--	<script>-->
+<!--	MathJax = {-->
+<!--		tex: {-->
+<!--			inlineMath: [['\\(','\\)']],-->
+<!--			macros: {-->
+<!--		  calA: "{\\mathcal{A}}",-->
+<!--          calB: "{\\mathcal{B}}",-->
+<!--		  calC: "{\\mathcal{C}}",-->
+<!--          calD: "{\\mathcal{D}}",-->
+<!--          calK: "{\\mathcal{K}}",-->
+<!--          calE: "{\\mathcal{E}}",-->
+<!--          calF: "{\\mathcal{F}}",-->
+<!--          calH: "{\\mathcal{H}}",-->
+<!--          calL: "{\\mathcal{L}}",-->
+<!--          calN: "{\\mathcal{N}}",-->
+<!--		  calO: "{\\mathcal{O}}",-->
+<!--          calS: "{\\mathcal{S}}",-->
+<!--          calT: "{\\mathcal{T}}",-->
+<!--          calU: "{\\mathcal{U}}",-->
+<!--		  calV: "{\\mathcal{V}}",-->
+<!--		  calW: "{\\mathcal{W}}",-->
+<!--          calX: "{\\mathcal{X}}",-->
+<!--          calY: "{\\mathcal{Y}}",-->
+<!--          calZ: "{\\mathcal{Z}}",-->
+<!--          avgD: ["{\\mathbb{D}\\!\\left(#1\\Vert #2\\right)}",2],-->
+<!--          bfA: "{\\mathbf{A}}",-->
+<!--		  bfB: "{\\mathbf{B}}",-->
+<!--		  bfD: "{\\mathbf{D}}",-->
+<!--		  bfG: "{\\mathbf{G}}",-->
+<!--		  bfH: "{\\mathbf{H}}",-->
+<!--		  bfI: "{\\mathbf{I}}",-->
+<!--		  bfP: "{\\mathbf{P}}",-->
+<!--		  bfQ: "{\\mathbf{Q}}",-->
+<!--		  bfR: "{\\mathbf{R}}",-->
+<!--		  bfS: "{\\mathbf{S}}",-->
+<!--		  bfU: "{\\mathbf{U}}",-->
+<!--		  bfV: "{\\mathbf{V}}",-->
+<!--		  bfW: "{\\mathbf{W}}",-->
+<!--		  bfX: "{\\mathbf{X}}",-->
+<!--		  bfY: "{\\mathbf{Y}}",-->
+<!--		  bfZ: "{\\mathbf{Z}}",-->
+<!--		  bfone: "{\\mathbf{1}}",-->
+<!--	      bfx: "{\\mathbf{x}}",-->
+<!--		  bfr: "{\\mathbf{r}}",-->
+<!--		  bfk: "{\\mathbf{k}}",-->
+<!--		  bfm: "{\\mathbf{m}}",-->
+<!--		  bfy: "{\\mathbf{y}}",-->
+<!--          bfu: "{\\mathbf{u}}",-->
+<!--          bfv: "{\\mathbf{v}}",-->
+<!--          bfw: "{\\mathbf{w}}",-->
+<!--          bfz: "{\\mathbf{z}}",-->
+<!--          bfb: "{\\mathbf{b}}",-->
+<!--          bfn: "{\\mathbf{n}}",-->
+<!--		  bfzero: "{\\boldsymbol{0}}",-->
+<!--		  bfalpha: "{\\boldsymbol{\\alpha}}",-->
+<!--		  bfmu: "{\\boldsymbol{\\mu}}",-->
+<!--		  bfbeta: "{\\boldsymbol{\\beta}}",-->
+<!--		  bftheta: "{\\boldsymbol{\\theta}}",-->
+<!--		  bfGamma: "{\\boldsymbol{\\Gamma}}",-->
+<!--		  bfLambda: "{\\boldsymbol{\\Lambda}}",-->
+<!--		  bfSigma: "{\\boldsymbol{\\Sigma}}",-->
+<!--		  bfTheta: "{\\boldsymbol{\\Theta}}",-->
+<!--          bfI: "{\\mathbf{I}}",-->
+<!--          bfK: "{\\mathbf{K}}",-->
+<!--		  bbK: "{\\mathbb{K}}",-->
+<!--          bbN: "{\\mathbb{N}}",-->
+<!--          bbR: "{\\mathbb{R}}",-->
+<!--		  GF: ["\\mathbb{F}_{#1}",1],-->
+<!--          card: ["{|{#1}|}",1],-->
+<!--          abs: ["{\\left|{#1}\\right|}",1],-->
+<!--          sgn: ["{\\text{sgn}\\left({#1}\\right)}",1],-->
+<!--          norm: ["{\\left\\Vert{#2}\\right\\Vert}_{#1}",2,""],-->
+<!--          set: ["{\\{#1\\}}",1],-->
+<!--		  trace: ["\\text{trace}\\left(#1\\right)",1],-->
+<!--          argmin: "\\mathop{\\text{argmin}}",-->
+<!--          argmax: "\\mathop{\\text{argmax}}",-->
+<!--          intseq: ["[{#1};{#2}]",2],-->
+<!--          eqdef: "\\triangleq",-->
+<!--          E: ["{\\mathbb{E}_{#1}\\!\\left[#2\\right]}",2,""],-->
+<!--          Var: ["{\\text{Var}(#1)}",1],-->
+<!--          P: ["{\\mathbb{P}_{#1}\\left(#2\\right)}",2,""],-->
+<!--          indic: ["{\\mathbf{1}\\{#1\\}}",1],-->
+<!--          bold: ["{\\bf #1}",1],-->
+<!--		  mat: ["\\left[\\begin{array}{#1}#2\\end{array}\\right]",2],-->
+<!--		  avgH: ["\\mathbb{H}\\!\\left(#1\\right)",1],-->
+<!--		  avgI: ["\\mathbb{I}\\!\\left(#1\\right)",1],-->
+<!--		  V : ["\\mathbb{V}\\left(#1\\right)",1],-->
+<!--		  supp : ["\\text{supp}\\left(#1\\right)",1],-->
+<!--		  dotp : ["\\langle #1,#2\\rangle",2]-->
+<!--		},-->
+<!--		},-->
+<!--		svg: {-->
+<!--			fontCache: 'global'-->
+<!--		},-->
+<!--	};-->
+<!--	</script>-->
+
+<!--	<script type="text/x-mathjax-config">-->
+<!--    MathJax.Hub.Config({-->
+<!--      "HTML-CSS": {-->
+<!--          preferredFont: "TeX",-->
+<!--          availableFonts: ["TeX"]-->
+<!--      },-->
+<!--      TeX: {-->
+<!--        Macros: {-->
+<!--          calA: "{\\mathcal{A}}",-->
+<!--          calB: "{\\mathcal{B}}",-->
+<!--		  calC: "{\\mathcal{C}}",-->
+<!--          calD: "{\\mathcal{D}}",-->
+<!--          calK: "{\\mathcal{K}}",-->
+<!--          calE: "{\\mathcal{E}}",-->
+<!--          calF: "{\\mathcal{F}}",-->
+<!--          calH: "{\\mathcal{H}}",-->
+<!--          calL: "{\\mathcal{L}}",-->
+<!--          calN: "{\\mathcal{N}}",-->
+<!--		  calO: "{\\mathcal{O}}",-->
+<!--          calS: "{\\mathcal{S}}",-->
+<!--          calT: "{\\mathcal{T}}",-->
+<!--          calU: "{\\mathcal{U}}",-->
+<!--		  calV: "{\\mathcal{V}}",-->
+<!--		  calW: "{\\mathcal{W}}",-->
+<!--          calX: "{\\mathcal{X}}",-->
+<!--          calY: "{\\mathcal{Y}}",-->
+<!--          calZ: "{\\mathcal{Z}}",-->
+<!--          avgD: ["{\\mathbb{D}\\!\\left(#1\\Vert #2\\right)}",2],-->
+<!--          bfA: "{\\mathbf{A}}",-->
+<!--		  bfB: "{\\mathbf{B}}",-->
+<!--		  bfD: "{\\mathbf{D}}",-->
+<!--		  bfG: "{\\mathbf{G}}",-->
+<!--		  bfH: "{\\mathbf{H}}",-->
+<!--		  bfI: "{\\mathbf{I}}",-->
+<!--		  bfP: "{\\mathbf{P}}",-->
+<!--		  bfQ: "{\\mathbf{Q}}",-->
+<!--		  bfR: "{\\mathbf{R}}",-->
+<!--		  bfS: "{\\mathbf{S}}",-->
+<!--		  bfU: "{\\mathbf{U}}",-->
+<!--		  bfV: "{\\mathbf{V}}",-->
+<!--		  bfW: "{\\mathbf{W}}",-->
+<!--		  bfX: "{\\mathbf{X}}",-->
+<!--		  bfY: "{\\mathbf{Y}}",-->
+<!--		  bfZ: "{\\mathbf{Z}}",-->
+<!--		  bfone: "{\\mathbf{1}}",-->
+<!--	      bfx: "{\\mathbf{x}}",-->
+<!--		  bfr: "{\\mathbf{r}}",-->
+<!--		  bfk: "{\\mathbf{k}}",-->
+<!--		  bfm: "{\\mathbf{m}}",-->
+<!--		  bfy: "{\\mathbf{y}}",-->
+<!--          bfu: "{\\mathbf{u}}",-->
+<!--          bfv: "{\\mathbf{v}}",-->
+<!--          bfw: "{\\mathbf{w}}",-->
+<!--          bfz: "{\\mathbf{z}}",-->
+<!--          bfb: "{\\mathbf{b}}",-->
+<!--          bfn: "{\\mathbf{n}}",-->
+<!--		  bfzero: "{\\boldsymbol{0}}",-->
+<!--		  bfalpha: "{\\boldsymbol{\\alpha}}",-->
+<!--		  bfmu: "{\\boldsymbol{\\mu}}",-->
+<!--		  bfbeta: "{\\boldsymbol{\\beta}}",-->
+<!--		  bftheta: "{\\boldsymbol{\\theta}}",-->
+<!--		  bfGamma: "{\\boldsymbol{\\Gamma}}",-->
+<!--		  bfLambda: "{\\boldsymbol{\\Lambda}}",-->
+<!--		  bfSigma: "{\\boldsymbol{\\Sigma}}",-->
+<!--		  bfTheta: "{\\boldsymbol{\\Theta}}",-->
+<!--          bfI: "{\\mathbf{I}}",-->
+<!--          bfK: "{\\mathbf{K}}",-->
+<!--		  bbK: "{\\mathbb{K}}",-->
+<!--          bbN: "{\\mathbb{N}}",-->
+<!--          bbR: "{\\mathbb{R}}",-->
+<!--		  GF: ["\\mathbb{F}_{#1}",1],-->
+<!--          card: ["{|{#1}|}",1],-->
+<!--          abs: ["{\\left|{#1}\\right|}",1],-->
+<!--          sgn: ["{\\text{sgn}\\left({#1}\\right)}",1],-->
+<!--          norm: ["{\\left\\Vert{#2}\\right\\Vert}_{#1}",2,""],-->
+<!--          set: ["{\\{#1\\}}",1],-->
+<!--		  trace: ["\\text{trace}\\left(#1\\right)",1],-->
+<!--          argmin: "\\mathop{\\text{argmin}}",-->
+<!--          argmax: "\\mathop{\\text{argmax}}",-->
+<!--          intseq: ["[{#1};{#2}]",2],-->
+<!--          eqdef: "\\triangleq",-->
+<!--          E: ["{\\mathbb{E}_{#1}\\!\\left[#2\\right]}",2,""],-->
+<!--          Var: ["{\\text{Var}(#1)}",1],-->
+<!--          P: ["{\\mathbb{P}_{#1}\\left(#2\\right)}",2,""],-->
+<!--          indic: ["{\\mathbf{1}\\{#1\\}}",1],-->
+<!--          bold: ["{\\bf #1}",1],-->
+<!--		  mat: ["\\left[\\begin{array}{#1}#2\\end{array}\\right]",2],-->
+<!--		  avgH: ["\\mathbb{H}\\!\\left(#1\\right)",1],-->
+<!--		  avgI: ["\\mathbb{I}\\!\\left(#1\\right)",1],-->
+<!--		  V : ["\\mathbb{V}\\left(#1\\right)",1],-->
+<!--		  supp : ["\\text{supp}\\left(#1\\right)",1]-->
+<!--        }-->
+<!--      }-->
+<!--    });-->
+<!--    </script>-->
+<!--    </body>-->
+<!--</html>-->
