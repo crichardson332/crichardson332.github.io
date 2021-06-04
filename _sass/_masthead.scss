@@ -3,22 +3,18 @@
    ========================================================================== */
 
 .masthead {
-  position: fixed;
-  top: 0;
+  position: relative;
   border-bottom: 1px solid $border-color;
   -webkit-animation: intro 0.3s both;
           animation: intro 0.3s both;
   -webkit-animation-delay: 0.15s;
           animation-delay: 0.15s;
-  width: 100%;
-  background-color: #fafafa;
+  z-index: 20;
 
   &__inner-wrap {
     @include container;
     @include clearfix;
-    // padding: 1em 1em 1em;
-    padding: 0em 0em 0em;
-    background-color: #fafafa;
+    padding: 1em 1em 1em;
     font-family: $sans-serif-narrow;
 
     @include breakpoint($x-large) {
@@ -33,16 +29,6 @@
       text-decoration: none;
     }
   }
-
-  &.sticky {
-    @include clearfix();
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0em;
-    // float: left;
-    // height: 85px;
-    z-index: 20;
-  }
 }
 
 .masthead__menu {
@@ -53,7 +39,6 @@
     clear: both;
     list-style-type: none;
   }
-  background-color: #fafafa;
 }
 
 .masthead__menu-item {

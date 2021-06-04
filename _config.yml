@@ -241,7 +241,7 @@ defaults:
       path: ""
       type: talks
     values:
-      layout: slide
+      layout: talk
       author_profile: true
       share: true
 
@@ -309,15 +309,3 @@ compress_html:
   clippings: all
   ignore:
     envs: development
-
-# reveal.js config
-reveal_theme: black.css
-reveal_transition: default
-reveal_theme_path: reveal.js/css/theme/
-extra_css:
-highlight_style_sheet:
-# Embed Server-side speaker notes?
-reveal_notes_server: false
-reveal_options:
-reveal_dependencies:
-reveal_path: reveal.js/reveal
